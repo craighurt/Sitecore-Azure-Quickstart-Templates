@@ -21,9 +21,9 @@ Resources provisioned:
 
 Here is the list of the differences:
 * Format the files (tab, space, newline, etc.).
-* Add the [deploy.ps1](/deploy.ps1) script file to be reused.
-* Have the parameters in Camel Casing like explained in this PR #3.
-* Remove some extra `dependsOn` to have a faster deployment like explained in this PR #4.
+* Add the [deploy.ps1](./deploy.ps1) script file to be reused.
+* Have the parameters in Camel Casing like explained in this PR #3
+* Remove some extra `dependsOn` to have a faster deployment like explained in this PR #4
 
 Here is the list of the other changes I would like to do:
 * Integrate [my slot template](../xm-slot) into this folder.
