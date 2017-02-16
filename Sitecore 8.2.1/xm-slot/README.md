@@ -1,12 +1,12 @@
-# Sitecore XM Environment
+__/!\ IMPORTANT: The main Azure Web App of this Slot should be created before running this templates (in this case you have to deploy the [XM template](../xm)).__
+
+# Sitecore XM Environment on Azure Web App Slot
 
 <a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FSitecore%2Fsitecore-azure-quickstart-templates%2Fmaster%2FSitecore%208.2.1%2Fxm%2Fazuredeploy.json%3Ftoken=AVW1Ug5RN1ZFpjUwqAajiNyO-D8COvpzks5YL89jwA%3D%3D" target="_blank">
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
 This template creates a Sitecore XM Environment (Slot) with all resources necessary to run Sitecore.
-
-/!\ IMPORTANT: The main Azure Web App of this Slot should be created before running this templates (in this case for example, run the "xm" templates).
 
 Resources provisioned:
  
@@ -30,4 +30,9 @@ The **deploymentId** and **licenseXml** parameters are filled in by the PowerShe
 | sitecore.admin.password | The new password for the Sitecore **admin** account.
 | cm.msdeploy.packageurl  | The blob storage url to a Sitecore XM Content Management Web Deploy package.
 | cd.msdeploy.packageurl  | The blob storage url to a Sitecore XM Content Delivery Web Deploy package.
+
+
+## Script to deploy
+
+You could use [this script](./deploy.ps1) and adapt it for your deployments.
 
