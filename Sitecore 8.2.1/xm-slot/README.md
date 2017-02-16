@@ -24,7 +24,7 @@ The **deploymentId** and **licenseXml** parameters are filled in by the PowerShe
 
 | Parameter               | Description
 --------------------------|------------------------------------------------
-| slotName          | The name of Azure Web App slot.
+| slotName                | The name of Azure Web App slot.
 | sqlserver.login         | The name of the administrator account for the newly created Azure SQL server.
 | sqlserver.password      | The password for the administrator account for Azure SQL server.
 | sitecore.admin.password | The new password for the Sitecore **admin** account.
