@@ -274,9 +274,6 @@
         "name": "[variables('cdHostingPlanNameTidy')]"
       },
       "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', variables('cmHostingPlanNameTidy'))]"
-      ],
       "tags": {
         "provider": "[parameters('sitecoreTags').provider]"
       }
@@ -550,9 +547,6 @@
         },
         "enableNonSslPort": false
       },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('cdWebAppNameTidy'))]"
-      ],
       "tags": {
         "provider": "[parameters('sitecoreTags').provider]"
       }
