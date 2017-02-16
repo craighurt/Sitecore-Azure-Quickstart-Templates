@@ -1,7 +1,8 @@
-/!\ Caution: non official repo for the Sitecore ARM Templates, official ones could be found [here](https://github.com/Sitecore/Sitecore-Azure-Quickstart-Templates).
+__/!\ Caution: non official repo for the Sitecore ARM Templates, official ones could be found [here](https://github.com/Sitecore/Sitecore-Azure-Quickstart-Templates).__
 
-This repo is my playground to customize what Sitecore provides by default and share other features and practices you could use for your own project and needs.
-/!\ Caution: watch what is done here before using them, you are responsible for the cost in Azure and other consideration which could be generated and impacted by these templates.
+__This repo is my playground to customize what Sitecore provides by default and share other features and practices you could use for your own project and needs.__
+
+__/!\ Caution: watch what is done here before using them, you are responsible for the cost in Azure and other consideration which could be generated and impacted by these templates.__
 
 Please, if you have any suggestion or contribution in mind, feel free to share, fork, contribute, etc.
 
@@ -34,7 +35,7 @@ Choose the compatible templates for your Sitecore version:
 
 ## My XM Sitecore template to create an Azure Web App Slot for XM
 
-* [XM-Slot](Sitecore%208.2.1/xm-slot) - custom template to deploy XM packages/services on an Azure Web App Slot
+* [XM-SLOT](Sitecore%208.2.1/xm-slot) - custom template to deploy XM packages/services on an Azure Web App Slot
 
 ## My custom XM Sitecore templates
 

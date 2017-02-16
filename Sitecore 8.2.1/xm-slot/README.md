@@ -1,4 +1,4 @@
-/!\ IMPORTANT: The main Azure Web App of this Slot should be created before running this templates (in this case for example, run the "xm" templates).
+__/!\ IMPORTANT: The main Azure Web App of this Slot should be created before running this templates (in this case you have to deploy the [XM template](../xm)).__
 
 # Sitecore XM Environment on Azure Web App Slot
 
@@ -34,5 +34,5 @@ The **deploymentId** and **licenseXml** parameters are filled in by the PowerShe
 
 ## Script to deploy
 
-You could use [this script](/deploy.ps1) and adapt it for your deployments.
+You could use [this script](./deploy.ps1) and adapt it for your deployments.
 

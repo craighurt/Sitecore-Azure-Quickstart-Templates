@@ -45,4 +45,4 @@ The **deploymentId** and **licenseXml** parameters are filled in by the PowerShe
 
 ## Script to deploy
 
-You could use [this script](/deploy.ps1) and adapt it for your deployments.
+You could use [this script](./deploy.ps1) and adapt it for your deployments.
