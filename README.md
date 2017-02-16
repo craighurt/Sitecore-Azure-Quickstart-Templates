@@ -1,3 +1,10 @@
+/!\ Caution: non official repo for the Sitecore ARM Templates, official ones could be found [here](https://github.com/Sitecore/Sitecore-Azure-Quickstart-Templates).
+
+This repo is my playground to customize what Sitecore provides by default and share other features and practices you could use for your own project and needs.
+/!\ Caution: watch what is done here before using them, you are responsible for the cost in Azure and other consideration which could be generated and impacted by these templates.
+
+Please, if you have any suggestion or contribution in mind, feel free to share, fork, contribute, etc.
+
 # Sitecore-Azure-Quickstart-Templates
 This repo contains all currently available Azure Resource Manager templates for Sitecore
 
@@ -17,94 +24,20 @@ Choose the compatible templates for your Sitecore version:
 3. Ensure you have a cloud-hosted instance of MongoDB for Experience Database in XP and XP0 configurations.
 4. Download and update the parameter values in the **azuredeploy.parameters.json** file
 
+# How my forked repository is structured
 
-# Sample PowerShell Script
-Below is a sample PowerShell script that can help you to get up and running quickly with the ARM Templates. There is also a Sitecore PowerShell CmdLet available for download at [Sitecore Downloads Site](https://dev.sitecore.net/Downloads.aspx) that makes the deployment even easier.
-```PowerShell
-$ArmTemplatePath = ".\xp\azuredeploy.json";
-$ArmParametersPath = ".\xp\azuredeploy.parameters.json";
+## Official Sitecore templates "as-is"
 
-# read the contents of your Sitecore license file
-$licenseFileContent = Get-Content -Raw -Encoding UTF8 -Path ".\license.xml" | Out-String;
-$Name = "RESOURCE_GROUP_NAME";
-$location = "AZURE_DATA_CENTER_NAME";
-$AzureSubscriptionId = "AZURE_SUBSCRIPTION_ID";
+* [XP0](/xp0) - official template "as-is"
+* [XP](/xp) - official template "as-is"
+* [XM](/xm) - official template "as-is"
 
-#region Create Params Object
-# license file needs to be secure string and adding the params as a hashtable is the only way to do it
-$additionalParams = New-Object -TypeName Hashtable;
+## My XM Sitecore template to create an Azure Web App Slot for XM
 
-$params = Get-Content $ArmParametersPath -Raw | ConvertFrom-Json;
+* [XM-Slot](/xm-slot) - custom template to deploy XM packages/services on an Azure Web App Slot
 
-foreach($p in $params | Get-Member -MemberType *Property)
-{
-    $additionalParams.Add($p.Name, $params.$($p.Name).value);
-}
+## My custom XM Sitecore templates
 
-$additionalParams.Set_Item('licenseXml', $licenseFileContent);
-$additionalParams.Set_Item('deploymentId', $Name);
+* [MY-XM](/my-xm) - my playground with custom changes. Use them, share them, adapt them and let's be creative! ;)
 
-#endregion
-
-#region Service Principle Details
-
-# By default this script will prompt you for your Azure credentials but you can update the script to use an Azure Service Principal instead by following the details at the link below and updating the four variables below once you are done.
-# https://azure.microsoft.com/en-us/documen tation/articles/resource-group-authenticate-service-principal/
-
-$UseServicePrinciple = $false;
-$TenantId = "SERVICE_PRINCIPAL_TENANT_ID";
-$ApplicationId = "SERVICE_PRINCIPAL_APPLICATION_ID";
-$ApplicationPassword = "SERVICE_PRINCIPAL_APPLICATION_PASSWORD";
-
-#endregion
-
-try {
-   	Write-Host "Setting Azure RM Context..."
-
- 	if($UseServicePrinciple -eq $true)
-	{
-		#region Use Service Principle
-		$secpasswd = ConvertTo-SecureString $ApplicationPassword -AsPlainText -Force
-		$mycreds = New-Object System.Management.Automation.PSCredential ($ApplicationId, $secpasswd)
-		Login-AzureRmAccount -ServicePrincipal -Tenant $TenantId -Credential $mycreds
-		
-		Set-AzureRmContext -SubscriptionID $AzureSubscriptionId -TenantId $TenantId;
-		#endregion
-	}
-	else
-	{
-		#region Use Manual Login
-		try 
-		{
-			Write-Host "inside try"
-			Set-AzureRmContext -SubscriptionID $AzureSubscriptionId
-		}
-		catch 
-		{
-			Write-Host "inside catch"
-			Login-AzureRmAccount
-			Set-AzureRmContext -SubscriptionID $AzureSubscriptionId
-		}
-		#endregion		
-	}
-	
- 	Write-Host "Check if resource group already exists..."
-	$notPresent = Get-AzureRmResourceGroup -Name $Name -ev notPresent -ea 0;
-	
-	if (!$notPresent) 
-	{
-		New-AzureRmResourceGroup -Name $Name -Location $location;
-	}
-	
-	Write-Verbose "Starting ARM deployment...";
-	New-AzureRmResourceGroupDeployment -Name $Name -ResourceGroupName $Name -TemplateFile $ArmTemplatePath -TemplateParameterObject $additionalParams; # -DeploymentDebugLogLevel All -Debug;
-
-	Write-Host "Deployment Complete.";
-}
-catch 
-{
-	Write-Error $_.Exception.Message
-	Break 
-}
-```
 
