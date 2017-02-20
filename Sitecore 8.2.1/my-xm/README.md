@@ -40,4 +40,6 @@ Furthermore, to deploy just the Azure services (without deploying the MSDeploy p
 
 # MSDeploy deployment
 
+Important note: before running this "MSDeploy deployment" the Azure Web App should have been created by running the above "Azure services deployment".
+
 You could use [this script](./deploy-msdeploy.ps1) and adapt it for your own deployments.
