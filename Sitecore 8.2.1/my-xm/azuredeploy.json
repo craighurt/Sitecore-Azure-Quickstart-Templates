@@ -215,11 +215,9 @@
       "type": "string",
       "defaultValue": "0"
     },
-    "sitecoreTags": {
-      "type": "object",
-      "defaultValue": {
-        "provider": "b51535c2-ab3e-4a68-95f8-e2e3c9a19299"
-      }
+    "sitecoreTagProvider": {
+      "type": "string",
+      "defaultValue": "b51535c2-ab3e-4a68-95f8-e2e3c9a19299"
     }
   },
   "resources": [
@@ -236,7 +234,7 @@
       },
       "location": "[parameters('location')]",
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       }
     },
     {
@@ -252,7 +250,7 @@
       },
       "location": "[parameters('location')]",
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       }
     },
     {
@@ -275,7 +273,7 @@
         "[resourceId('Microsoft.Web/serverfarms', variables('cmHostingPlanNameTidy'))]"
       ],
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       },
       "resources": [
         {
@@ -335,7 +333,7 @@
         "[resourceId('Microsoft.Web/serverfarms', variables('cdHostingPlanNameTidy'))]"
       ],
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       },
       "resources": [
         {
@@ -386,7 +384,7 @@
       "name": "[variables('dbServerNameTidy')]",
       "location": "[parameters('location')]",
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       },
       "resources": [
         {
@@ -416,7 +414,7 @@
             "[resourceId('Microsoft.Sql/servers', variables('dbServerNameTidy'))]"
           ],
           "tags": {
-            "provider": "[parameters('sitecoreTags').provider]"
+            "provider": "[parameters('sitecoreTagProvider')]"
           }
         },
         {
@@ -434,7 +432,7 @@
             "[resourceId('Microsoft.Sql/servers', variables('dbServerNameTidy'))]"
           ],
           "tags": {
-            "provider": "[parameters('sitecoreTags').provider]"
+            "provider": "[parameters('sitecoreTagProvider')]"
           }
         }
       ]
@@ -450,7 +448,7 @@
       "name": "[variables('webDbServerNameTidy')]",
       "location": "[parameters('location')]",
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       },
       "resources": [
         {
@@ -480,7 +478,7 @@
             "[resourceId('Microsoft.Sql/servers', variables('webDbServerNameTidy'))]"
           ],
           "tags": {
-            "provider": "[parameters('sitecoreTags').provider]"
+            "provider": "[parameters('sitecoreTagProvider')]"
           }
         }
       ]
@@ -498,7 +496,7 @@
         "partitionCount": "[parameters('searchservicePartitioncount')]"
       },
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       }
     },
     {
@@ -515,7 +513,7 @@
         "enableNonSslPort": false
       },
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       }
     },
     {
@@ -528,7 +526,7 @@
         "Application_Type": "web"
       },
       "tags": {
-        "provider": "[parameters('sitecoreTags').provider]"
+        "provider": "[parameters('sitecoreTagProvider')]"
       }
     }
   ]
