@@ -24,13 +24,13 @@ Here is the list of the differences:
 * Add the [deploy.ps1](./deploy.ps1) script file to be reused.
 * Have the parameters in Camel Casing like explained in this PR #3
 * Remove some extra `dependsOn` to have a faster deployment like explained in this PR #4
+* Integrate Connection Strings on the Azure Web Apps on itself.
+* Add the "Deploy on Azure" button accordingly.
 
 Here is the list of the other changes I would like to do:
 * Integrate [my slot template](../xm-slot) into this folder.
-* Integrate the App Settings and Connection Strings on the Azure Web Apps on itself.
 * Integrate some Alert Rules on the Azure Web Apps on itself.
 * Split the main template into different nested deployment (separation of services and msdeploy provision).
-* Add the "Deploy on Azure" button accordingly.
 
 ## Parameters
 The **deploymentId** and **licenseXml** parameters are filled in by the PowerShell script.
@@ -43,6 +43,10 @@ The **deploymentId** and **licenseXml** parameters are filled in by the PowerShe
 | cmMsdeployPackageurl    | The blob storage url to a Sitecore XM Content Management Web Deploy package.
 | cdMsdeployPackageurl    | The blob storage url to a Sitecore XM Content Delivery Web Deploy package.
 
-## Script to deploy
+## Deployments
 
 You could use [this script](./deploy.ps1) and adapt it for your deployments.
+
+Furthermore, to deploy just the Azure services (without deploying the MSDeploy packages nor restoring the DACPAC files) you could use this button:
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2FSitecore-Azure-Quickstart-Templates%2Fmaster%2FSitecore%208.2.1%2Fmy-xm%2Fazuredeploy.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
