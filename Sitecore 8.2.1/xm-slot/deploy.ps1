@@ -22,7 +22,7 @@ $parameters.Add("sitecore.admin.password", $SitecoreAdminPassword);
 $parameters.Add("licenseXml", $licenseFileContent);
 
 #Login-AzureRmAccount
-#Select-AzureRmSubscription -SubcriptionName "TODO"
+#Select-AzureRmSubscription -SubscriptionName "TODO"
 New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation;
 New-AzureRmResourceGroupDeployment -Name $ResourceGroupName -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -TemplateParameterObject $parameters;
 
