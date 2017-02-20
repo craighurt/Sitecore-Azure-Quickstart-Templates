@@ -29,16 +29,19 @@ Choose the compatible templates for your Sitecore version:
 
 ## Official Sitecore templates "as-is"
 
-* [XP0](Sitecore%208.2.1/xp0) - official template "as-is"
-* [XP](Sitecore%208.2.1/xp) - official template "as-is"
-* [XM](Sitecore%208.2.1/xm) - official template "as-is"
+* [xp0](Sitecore%208.2.1/xp0) - official template "as-is"
+* [xp](Sitecore%208.2.1/xp) - official template "as-is"
+* [xm](Sitecore%208.2.1/xm) - official template "as-is"
 
-## My XM Sitecore template to create an Azure Web App Slot for XM
+## Unofficial Sitecore template to create an Azure Web App Slot for XM
 
-* [XM-SLOT](Sitecore%208.2.1/xm-slot) - custom template to deploy XM packages/services on an Azure Web App Slot
+* [xm-slot](Sitecore%208.2.1/xm-slot) - based on the official XM Template, custom template to deploy XM packages/services on an Azure Web App Slot
 
 ## My custom XM Sitecore templates
 
-* [MY-XM](Sitecore%208.2.1/my-xm) - my playground with custom changes. Use them, share them, adapt them and let's be creative! ;)
+My playground with custom changes. Use them, share them, adapt them and let's be creative! ;)
+
+* [my-xm](Sitecore%208.2.1/my-xm) - more details by following the link.
+* [my-xm-slot](Sitecore%208.2.1/my-xm-slot) - more details by following the link.
 
 
