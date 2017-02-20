@@ -1,9 +1,5 @@
 # Sitecore XM Environment (customized, non official!)
 
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FSitecore%2Fsitecore-azure-quickstart-templates%2Fmaster%2FSitecore%208.2.1%2Fxm%2Fazuredeploy.json%3Ftoken=AVW1Ug5RN1ZFpjUwqAajiNyO-D8COvpzks5YL89jwA%3D%3D" target="_blank">
-    <img src="http://armviz.io/visualizebutton.png"/>
-</a>
-
 This template creates a Sitecore XM Environment with all resources necessary to run Sitecore.
 
 Resources provisioned:
@@ -17,36 +13,31 @@ Resources provisioned:
     * Hosting plans: one per role
     * Preconfigured Web Applications, based on the provided WebDeploy packages
     
-## What are the differences with the official XM template/repo?
+# What are the differences with the official XM template/repo?
 
 Here is the list of the differences:
 * Format the files (tab, space, newline, etc.).
-* Add the [deploy.ps1](./deploy.ps1) script file to be reused.
+* Add the PowerShell script files to be reused.
 * Have the parameters in Camel Casing like explained in this PR #3
 * Remove some extra `dependsOn` to have a faster deployment like explained in this PR #4
 * Integrate Connection Strings on the Azure Web Apps on itself.
 * Add the "Deploy on Azure" button accordingly.
+* Split the azuredeploy.json to have separately 2 deployments: Azure services and the MSDeploy (PR #6).
 
-Here is the list of the other changes I would like to do:
-* Integrate [my slot template](../xm-slot) into this folder.
-* Integrate some Alert Rules on the Azure Web Apps on itself.
-* Split the main template into different nested deployment (separation of services and msdeploy provision).
+# Deployments
 
-## Parameters
-The **deploymentId** and **licenseXml** parameters are filled in by the PowerShell script.
+In this folder, the deployments are split into 2 file:
+* azuredeploy.json - manage just the Azure services deployment (without the MSDeploy).
+* azuredeploy-msdeploy.json - manage just the MSDeploy (CM and CD) deployments.
 
-| Parameter               | Description
---------------------------|------------------------------------------------
-| sqlserverLogin          | The name of the administrator account for the newly created Azure SQL server.
-| sqlserverPassword       | The password for the administrator account for Azure SQL server.
-| sitecoreAdminPassword   | The new password for the Sitecore **admin** account.
-| cmMsdeployPackageurl    | The blob storage url to a Sitecore XM Content Management Web Deploy package.
-| cdMsdeployPackageurl    | The blob storage url to a Sitecore XM Content Delivery Web Deploy package.
+# Azure services deployment
 
-## Deployments
-
-You could use [this script](./deploy.ps1) and adapt it for your deployments.
+You could use [this script](./deploy.ps1) and adapt it for your own deployments.
 
 Furthermore, to deploy just the Azure services (without deploying the MSDeploy packages nor restoring the DACPAC files) you could use this button:
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2FSitecore-Azure-Quickstart-Templates%2Fmaster%2FSitecore%208.2.1%2Fmy-xm%2Fazuredeploy.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+
+# MSDeploy deployment
+
+You could use [this script](./deploy-msdeploy.ps1) and adapt it for your own deployments.
