@@ -203,6 +203,9 @@
       "type": "Microsoft.Web/sites/slots/extensions",
       "location": "[parameters('location')]",
       "apiVersion": "[variables('webApiVersion')]",
+      "dependsOn": [
+        "[concat('Microsoft.Web/sites/', variables('cmWebAppNameTidy'), '/slots/', parameters('slotName'), '/Extensions/MSDeploy')]"
+      ],
       "properties": {
         "packageUri": "[parameters('cdMsdeployPackageurl')]",
         "dbType": "SQL",
