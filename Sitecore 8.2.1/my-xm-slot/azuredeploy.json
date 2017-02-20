@@ -159,22 +159,6 @@
         "West Europe"
       ]
     },
-    "cmHostingplanSkuname": {
-      "type": "string",
-      "defaultValue": "S1"
-    },
-    "cmHostingplanSkucapacity": {
-      "type": "int",
-      "defaultValue": 1
-    },
-    "cdHostingplanSkuname": {
-      "type": "string",
-      "defaultValue": "S1"
-    },
-    "cdHostingplanSkucapacity": {
-      "type": "int",
-      "defaultValue": 1
-    },
     "searchserviceSkuname": {
       "type": "string",
       "defaultValue": "Standard"

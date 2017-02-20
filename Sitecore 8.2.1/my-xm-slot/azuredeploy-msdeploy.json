@@ -24,6 +24,10 @@
       "type": "string",
       "defaultValue": "[resourceGroup().name]"
     },
+    "slotName": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().name]"
+    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]"
@@ -44,7 +48,7 @@
     },
     "sqlserverName": {
       "type": "string",
-      "defaultValue": "[concat(parameters('deploymentId'), '-sql')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-', parameters('slotName'), '-sql')]"
     },
     "sqlserverLogin": {
       "type": "string",
@@ -56,7 +60,7 @@
     },
     "webSqlserverName": {
       "type": "string",
-      "defaultValue": "[concat(parameters('deploymentId'), '-web-sql')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-', parameters('slotName'), '-web-sql')]"
     },
     "webSqlserverLogin": {
       "type": "string",
@@ -70,15 +74,15 @@
     },
     "coreSqldatabaseName": {
       "type": "string",
-      "defaultValue": "[concat(parameters('deploymentId'), '-core-db')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-', parameters('slotName'), '-core-db')]"
     },
     "masterSqldatabaseName": {
       "type": "string",
-      "defaultValue": "[concat(parameters('deploymentId'), '-master-db')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-', parameters('slotName'), '-master-db')]"
     },
     "webSqldatabaseName": {
       "type": "string",
-      "defaultValue": "[concat(parameters('deploymentId'), '-web-db')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-', parameters('slotName'), '-web-db')]"
     },
     "cmCoreSqldatabaseUsername": {
       "type": "string",
@@ -132,15 +136,15 @@
     },
     "searchserviceName": {
       "type": "string",
-      "defaultValue": "[concat(parameters('deploymentId'), '-as')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-', parameters('slotName'), '-as')]"
     },
     "rediscacheName": {
       "type": "string",
-      "defaultValue": "[concat(parameters('deploymentId'), '-redis')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-', parameters('slotName'), '-redis')]"
     },
     "applicationinsightsName": {
       "type": "string",
-      "defaultValue": "[concat(parameters('deploymentId'), '-ai')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-', parameters('slotName'), '-ai')]"
     },
     "licenseXml": {
       "type": "securestring"
@@ -161,8 +165,8 @@
   },
   "resources": [
     {
-      "name": "[concat(variables('cmWebAppNameTidy'), '/MSDeploy')]",
-      "type": "Microsoft.Web/sites/extensions",
+      "name": "[concat(variables('cmWebAppNameTidy'), '/', parameters('slotName'), '/MSDeploy')]",
+      "type": "Microsoft.Web/sites/slots/extensions",
       "location": "[parameters('location')]",
       "apiVersion": "[variables('webApiVersion')]",
       "properties": {
@@ -187,7 +191,7 @@
           "Cloud Search Connection String": "[concat('serviceUrl=https://', variables('searchServiceNameTidy'), '.search.windows.net;apiVersion=', variables('searchApiVersion'), ';apiKey=', listAdminKeys(resourceId('Microsoft.Search/searchServices', variables('searchServiceNameTidy')), variables('searchApiVersion')).primaryKey)]",
           "Application Insights Instrumentation Key": "[reference(concat('Microsoft.Insights/Components/', variables('appInsightsNameTidy')), variables('appInsightsApiVersion')).InstrumentationKey]",
           "Application Insights Role": "CM",
-          "KeepAlive Url": "[concat('https://', reference(concat('Microsoft.Web/sites/', variables('cmWebAppNameTidy')), variables('webApiVersion')).hostNames[0], '/sitecore/service/keepalive.aspx')]",
+          "KeepAlive Url": "[concat('https://', reference(concat('Microsoft.Web/sites/', variables('cmWebAppNameTidy'), '/slots/', parameters('slotName')), variables('webApiVersion')).hostNames[0], '/sitecore/service/keepalive.aspx')]",
           "License Xml": "[variables('licenseXml')]",
           "IP Security Client IP": "[parameters('securityClientIp')]",
           "IP Security Client IP Mask": "[parameters('securityClientIpMask')]"
@@ -195,8 +199,8 @@
       }
     },
     {
-      "name": "[concat(variables('cdWebAppNameTidy'), '/MSDeploy')]",
-      "type": "Microsoft.Web/sites/extensions",
+      "name": "[concat(variables('cdWebAppNameTidy'), '/', parameters('slotName'), '/MSDeploy')]",
+      "type": "Microsoft.Web/sites/slots/extensions",
       "location": "[parameters('location')]",
       "apiVersion": "[variables('webApiVersion')]",
       "properties": {
@@ -217,7 +221,7 @@
           "Cloud Search Connection String": "[concat('serviceUrl=https://', variables('searchServiceNameTidy'), '.search.windows.net;apiVersion=', variables('searchApiVersion'), ';apiKey=', listAdminKeys(resourceId('Microsoft.Search/searchServices', variables('searchServiceNameTidy')), variables('searchApiVersion')).primaryKey)]",
           "Application Insights Instrumentation Key": "[reference(concat('Microsoft.Insights/Components/', variables('appInsightsNameTidy')), variables('appInsightsApiVersion')).InstrumentationKey]",
           "Application Insights Role": "CD",
-          "KeepAlive Url": "[concat('https://', reference(concat('Microsoft.Web/sites/', variables('cdWebAppNameTidy')), variables('webApiVersion')).hostNames[0], '/sitecore/service/keepalive.aspx')]",
+          "KeepAlive Url": "[concat('https://', reference(concat('Microsoft.Web/sites/', variables('cdWebAppNameTidy'), '/slots/', parameters('slotName')), variables('webApiVersion')).hostNames[0], '/sitecore/service/keepalive.aspx')]",
           "Redis Connection String": "[concat(reference(concat('Microsoft.Cache/Redis/', variables('redisCacheNameTidy')), variables('redisApiVersion')).hostName, ':', reference(concat('Microsoft.Cache/Redis/', variables('redisCacheNameTidy')), variables('redisApiVersion')).sslPort, ',password=', listKeys(resourceId('Microsoft.Cache/Redis', variables('redisCacheNameTidy')), variables('redisApiVersion')).primaryKey, ',ssl=True,abortConnect=False')]",
           "License Xml": "[variables('licenseXml')]"
         }
