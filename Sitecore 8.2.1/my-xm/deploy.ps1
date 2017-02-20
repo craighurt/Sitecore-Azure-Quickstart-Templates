@@ -6,13 +6,8 @@ Param(
     [securestring] [Parameter(Mandatory=$true)] $SqlServerPassword
 )
 
-$parameters = New-Object -TypeName Hashtable;
-$parameters.Add("sqlserverLogin", $SqlServerLogin);
-$parameters.Add("sqlserverPassword", $SqlServerPassword);
-
 #Login-AzureRmAccount
 #Select-AzureRmSubscription -SubcriptionName "TODO"
 New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation;
-New-AzureRmResourceGroupDeployment -Name $ResourceGroupName -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -TemplateParameterObject $parameters;
-
+New-AzureRmResourceGroupDeployment -Name $ResourceGroupName -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -sqlserverLogin $SqlServerLogin -sqlserverPassword $SqlServerPassword;
                                     
