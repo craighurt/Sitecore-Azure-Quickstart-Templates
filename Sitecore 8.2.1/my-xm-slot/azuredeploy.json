@@ -206,6 +206,10 @@
     "sitecoreTagProvider": {
       "type": "string",
       "defaultValue": "b51535c2-ab3e-4a68-95f8-e2e3c9a19299"
+    },
+    "webAppRemoteDebuggingEnabled": {
+      "type": "bool",
+      "defaultValue": false
     }
   },
   "resources": [
@@ -221,7 +225,9 @@
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
-          ]
+          ],
+          "remoteDebuggingEnabled": "[parameters('webAppRemoteDebuggingEnabled')]",
+          "remoteDebuggingVersion": "VS2015"
         }
       },
       "location": "[parameters('location')]",
@@ -234,7 +240,7 @@
           "name": "connectionstrings",
           "type": "config",
           "dependsOn": [
-            "[concat('Microsoft.Web/sites/', variables('cmWebAppNameTidy'), '/slots/', parameters('slotName'))]", 
+            "[concat('Microsoft.Web/sites/', variables('cmWebAppNameTidy'), '/slots/', parameters('slotName'))]",
             "[resourceId('Microsoft.Search/searchServices', variables('searchServiceNameTidy'))]",
             "[resourceId('Microsoft.Insights/Components', variables('appInsightsNameTidy'))]",
             "[concat('Microsoft.Sql/servers/', variables('dbServerNameTidy'), '/databases/', variables('coreDbNameTidy'))]",
@@ -278,7 +284,9 @@
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
-          ]
+          ],
+          "remoteDebuggingEnabled": "[parameters('webAppRemoteDebuggingEnabled')]",
+          "remoteDebuggingVersion": "VS2015"
         }
       },
       "location": "[parameters('location')]",
