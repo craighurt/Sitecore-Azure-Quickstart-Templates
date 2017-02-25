@@ -171,10 +171,6 @@
       "type": "int",
       "defaultValue": 1
     },
-    "searchserviceSkuname": {
-      "type": "string",
-      "defaultValue": "Standard"
-    },
     "sqlserverVersion": {
       "type": "string",
       "defaultValue": "12.0"
@@ -195,21 +191,51 @@
       "type": "string",
       "defaultValue": "S1"
     },
-    "searchserviceCdlicacount": {
+    "searchserviceSkuname": {
+      "type": "string",
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Free",
+        "Basic",
+        "Standard",
+        "Standard2",
+        "Standard3"
+      ]
+    },
+    "searchserviceReplicacount": {
       "type": "int",
-      "defaultValue": 1
+      "defaultValue": 1,
+      "minValue": 1,
+      "maxValue": 12
     },
     "searchservicePartitioncount": {
       "type": "int",
-      "defaultValue": 1
+      "defaultValue": 1,
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        12
+      ]
     },
     "rediscacheSkuname": {
       "type": "string",
-      "defaultValue": "Basic"
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
     },
     "rediscacheSkufamily": {
       "type": "string",
-      "defaultValue": "C"
+      "defaultValue": "C",
+      "allowedValues": [
+        "C",
+        "P"
+      ]
     },
     "rediscacheSkucapacity": {
       "type": "string",
@@ -500,7 +526,7 @@
         "sku": {
           "name": "[toLower(parameters('searchserviceSkuname'))]"
         },
-        "cdlicaCount": "[parameters('searchserviceCdlicacount')]",
+        "replicaCount": "[parameters('searchserviceReplicacount')]",
         "partitionCount": "[parameters('searchservicePartitioncount')]"
       },
       "tags": {
