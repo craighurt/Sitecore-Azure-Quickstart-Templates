@@ -181,7 +181,12 @@
     },
     "sqldatabaseEdition": {
       "type": "string",
-      "defaultValue": "Standard"
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
     },
     "sqldatabaseMaxsize": {
       "type": "string",
@@ -239,7 +244,16 @@
     },
     "rediscacheSkucapacity": {
       "type": "string",
-      "defaultValue": "0"
+      "defaultValue": "0",
+      "allowedValues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
     },
     "sitecoreTagProvider": {
       "type": "string",
