@@ -4,7 +4,7 @@
   "variables": {
     "webApiVersion": "2015-08-01",
     "dbApiVersion": "2014-04-01-preview",
-    "searchApiVersion": "2015-02-28",
+    "searchApiVersion": "2015-08-19",
     "redisApiVersion": "2016-04-01",
     "appInsightsApiVersion": "2014-08-01",
     "cmHostingPlanNameTidy": "[toLower(trim(parameters('cmHostingplanName')))]",
