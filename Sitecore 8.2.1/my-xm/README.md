@@ -18,11 +18,14 @@ Resources provisioned:
 Here is the list of the differences:
 * Format the files (tab, space, newline, etc.).
 * Add the PowerShell script files to be reused.
-* Have the parameters in Camel Casing like explained in this PR #3
+* Have the `parameters` in Camel Casing like explained in this PR #3
 * Remove some extra `dependsOn` to have a faster deployment like explained in this PR #4
 * Integrate Connection Strings on the Azure Web Apps on itself.
 * Add the "Deploy on Azure" button accordingly.
 * Split the azuredeploy.json to have separately 2 deployments: Azure services and the MSDeploy (PR #6).
+* Add the `allowedValues` when possible (PR #8).
+* Fix the Search service `replicacount` property name + `apiVersion` date value (PR #8).
+* Assign `alwaysOn` and `use32BitWorkerProcess` according the `web.sku.name` value (PR #8).
 
 # Deployments
 

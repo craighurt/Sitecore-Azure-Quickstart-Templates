@@ -4,7 +4,7 @@
   "variables": {
     "webApiVersion": "2015-08-01",
     "dbApiVersion": "2014-04-01-preview",
-    "searchApiVersion": "2015-02-28",
+    "searchApiVersion": "2015-08-19",
     "redisApiVersion": "2016-04-01",
     "appInsightsApiVersion": "2014-08-01",
     "cmHostingPlanNameTidy": "[toLower(trim(parameters('cmHostingplanName')))]",
@@ -18,7 +18,35 @@
     "masterDbNameTidy": "[toLower(trim(parameters('masterSqldatabaseName')))]",
     "searchServiceNameTidy": "[toLower(trim(parameters('searchserviceName')))]",
     "redisCacheNameTidy": "[toLower(trim(parameters('rediscacheName')))]",
-    "appInsightsNameTidy": "[toLower(trim(parameters('applicationinsightsName')))]"
+    "appInsightsNameTidy": "[toLower(trim(parameters('applicationinsightsName')))]",
+    "webAlwaysOn": {
+      "F1": "false",
+      "D1": "false",
+      "B1": "true",
+      "B2": "true",
+      "B3": "true",
+      "S1": "true",
+      "S2": "true",
+      "S3": "true",
+      "P1": "true",
+      "P2": "true",
+      "P3": "true",
+      "P4": "true"
+    },
+    "webUse32BitWorkerProcess": {
+      "F1": "true",
+      "D1": "true",
+      "B1": "false",
+      "B2": "false",
+      "B3": "false",
+      "S1": "false",
+      "S2": "false",
+      "S3": "false",
+      "P1": "false",
+      "P2": "false",
+      "P3": "false",
+      "P4": "false"
+    }
   },
   "parameters": {
     "deploymentId": {
@@ -157,7 +185,21 @@
     },
     "cmHostingplanSkuname": {
       "type": "string",
-      "defaultValue": "S1"
+      "defaultValue": "S1",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ]
     },
     "cmHostingplanSkucapacity": {
       "type": "int",
@@ -165,15 +207,25 @@
     },
     "cdHostingplanSkuname": {
       "type": "string",
-      "defaultValue": "S1"
+      "defaultValue": "S1",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ]
     },
     "cdHostingplanSkucapacity": {
       "type": "int",
       "defaultValue": 1
-    },
-    "searchserviceSkuname": {
-      "type": "string",
-      "defaultValue": "Standard"
     },
     "sqlserverVersion": {
       "type": "string",
@@ -185,7 +237,12 @@
     },
     "sqldatabaseEdition": {
       "type": "string",
-      "defaultValue": "Standard"
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
     },
     "sqldatabaseMaxsize": {
       "type": "string",
@@ -195,25 +252,64 @@
       "type": "string",
       "defaultValue": "S1"
     },
-    "searchserviceCdlicacount": {
+    "searchserviceSkuname": {
+      "type": "string",
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Free",
+        "Basic",
+        "Standard",
+        "Standard2",
+        "Standard3"
+      ]
+    },
+    "searchserviceReplicacount": {
       "type": "int",
-      "defaultValue": 1
+      "defaultValue": 1,
+      "minValue": 1,
+      "maxValue": 12
     },
     "searchservicePartitioncount": {
       "type": "int",
-      "defaultValue": 1
+      "defaultValue": 1,
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        12
+      ]
     },
     "rediscacheSkuname": {
       "type": "string",
-      "defaultValue": "Basic"
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
     },
     "rediscacheSkufamily": {
       "type": "string",
-      "defaultValue": "C"
+      "defaultValue": "C",
+      "allowedValues": [
+        "C",
+        "P"
+      ]
     },
     "rediscacheSkucapacity": {
       "type": "string",
-      "defaultValue": "0"
+      "defaultValue": "0",
+      "allowedValues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
     },
     "sitecoreTagProvider": {
       "type": "string",
@@ -264,8 +360,8 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('cmHostingPlanNameTidy'))]",
         "siteConfig": {
-          "use32BitWorkerProcess": false,
-          "alwaysOn": true,
+          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[parameters('cmHostingplanSkuname')]]",
+          "alwaysOn": "[variables('webAlwaysOn')[parameters('cmHostingplanSkuname')]]",
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
@@ -326,8 +422,8 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('cdHostingPlanNameTidy'))]",
         "siteConfig": {
-          "use32BitWorkerProcess": false,
-          "alwaysOn": true,
+          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[parameters('cdHostingplanSkuname')]]",
+          "alwaysOn": "[variables('webAlwaysOn')[parameters('cdHostingplanSkuname')]]",
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
@@ -500,7 +596,7 @@
         "sku": {
           "name": "[toLower(parameters('searchserviceSkuname'))]"
         },
-        "cdlicaCount": "[parameters('searchserviceCdlicacount')]",
+        "replicaCount": "[parameters('searchserviceReplicacount')]",
         "partitionCount": "[parameters('searchservicePartitioncount')]"
       },
       "tags": {
