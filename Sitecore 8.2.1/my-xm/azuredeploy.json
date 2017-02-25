@@ -18,7 +18,35 @@
     "masterDbNameTidy": "[toLower(trim(parameters('masterSqldatabaseName')))]",
     "searchServiceNameTidy": "[toLower(trim(parameters('searchserviceName')))]",
     "redisCacheNameTidy": "[toLower(trim(parameters('rediscacheName')))]",
-    "appInsightsNameTidy": "[toLower(trim(parameters('applicationinsightsName')))]"
+    "appInsightsNameTidy": "[toLower(trim(parameters('applicationinsightsName')))]",
+    "webAlwaysOn": {
+      "F1": "false",
+      "D1": "false",
+      "B1": "true",
+      "B2": "true",
+      "B3": "true",
+      "S1": "true",
+      "S2": "true",
+      "S3": "true",
+      "P1": "true",
+      "P2": "true",
+      "P3": "true",
+      "P4": "true"
+    },
+    "webUse32BitWorkerProcess": {
+      "F1": "true",
+      "D1": "true",
+      "B1": "false",
+      "B2": "false",
+      "B3": "false",
+      "S1": "false",
+      "S2": "false",
+      "S3": "false",
+      "P1": "false",
+      "P2": "false",
+      "P3": "false",
+      "P4": "false"
+    }
   },
   "parameters": {
     "deploymentId": {
@@ -157,7 +185,21 @@
     },
     "cmHostingplanSkuname": {
       "type": "string",
-      "defaultValue": "S1"
+      "defaultValue": "S1",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ]
     },
     "cmHostingplanSkucapacity": {
       "type": "int",
@@ -165,7 +207,21 @@
     },
     "cdHostingplanSkuname": {
       "type": "string",
-      "defaultValue": "S1"
+      "defaultValue": "S1",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ]
     },
     "cdHostingplanSkucapacity": {
       "type": "int",
@@ -304,8 +360,8 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('cmHostingPlanNameTidy'))]",
         "siteConfig": {
-          "use32BitWorkerProcess": false,
-          "alwaysOn": true,
+          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[parameters('cmHostingplanSkuname')]]",
+          "alwaysOn": "[variables('webAlwaysOn')[parameters('cmHostingplanSkuname')]]",
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
@@ -366,8 +422,8 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('cdHostingPlanNameTidy'))]",
         "siteConfig": {
-          "use32BitWorkerProcess": false,
-          "alwaysOn": true,
+          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[parameters('cdHostingplanSkuname')]]",
+          "alwaysOn": "[variables('webAlwaysOn')[parameters('cdHostingplanSkuname')]]",
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
