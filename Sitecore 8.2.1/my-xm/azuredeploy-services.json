@@ -633,5 +633,15 @@
         "provider": "[parameters('sitecoreTagProvider')]"
       }
     }
-  ]
+  ],
+  "outputs": {
+    "redisConnectionString": {
+      "value": "[concat(reference(variables('redisCacheNameTidy')).hostName, ':', reference(variables('redisCacheNameTidy')).sslPort, ',password=', listKeys(resourceId('Microsoft.Cache/Redis', variables('redisCacheNameTidy')), variables('redisApiVersion')).primaryKey, ',ssl=True,abortConnect=False')]",
+      "type": "string"
+    },
+    "applicationInsightsInstrumentationKey": {
+      "value": "[reference(resourceId('Microsoft.Insights/Components', variables('appInsightsNameTidy'))).InstrumentationKey]",
+      "type": "string"
+    }
+  }
 }
