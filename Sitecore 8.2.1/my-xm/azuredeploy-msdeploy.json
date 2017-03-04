@@ -83,7 +83,7 @@
     "cmCoreSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cm-core-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cm-core-', parameters('deploymentId'), '-user')]"
     },
     "cmCoreSqldatabasePassword": {
       "type": "securestring",
@@ -93,7 +93,7 @@
     "cmMasterSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cm-master-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cm-master-', parameters('deploymentId'), '-user')]"
     },
     "cmMasterSqldatabasePassword": {
       "type": "securestring",
@@ -103,7 +103,7 @@
     "cmWebSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cm-web-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cm-web-', parameters('deploymentId'), '-user')]"
     },
     "cmWebSqldatabasePassword": {
       "type": "securestring",
@@ -113,7 +113,7 @@
     "cdCoreSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cd-core-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cd-core-', parameters('deploymentId'), '-user')]"
     },
     "cdCoreSqldatabasePassword": {
       "type": "securestring",
@@ -123,7 +123,7 @@
     "cdWebSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cd-web-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cd-web-', parameters('deploymentId'), '-user')]"
     },
     "cdWebSqldatabasePassword": {
       "type": "securestring",

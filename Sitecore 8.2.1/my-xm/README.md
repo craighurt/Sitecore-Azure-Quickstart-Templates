@@ -29,20 +29,26 @@ Here is the list of the differences:
 
 # Deployments
 
-In this folder, the deployments are split into 2 file:
-* [azuredeploy.json](./azuredeploy.json) - manage just the Azure services deployment (without the MSDeploy).
+* [azuredeploy.json](./azuredeploy.json) - manage both the Azure services deployment and the MSDeploy deployment.
+* [azuredeploy-services.json](./azuredeploy-services.json) - manage just the Azure services deployment (without the MSDeploy).
 * [azuredeploy-msdeploy.json](./azuredeploy-msdeploy.json) - manage just the MSDeploy (CM and CD) deployments.
 
-# Azure services deployment
+# Full deployment
 
 You could use [this script](./deploy.ps1) and adapt it for your own deployments.
 
+This will deploy first [azuredeploy-services.json](./azuredeploy-services.json) and then [azuredeploy-msdeploy.json](./azuredeploy-msdeploy.json).
+
+# Azure services only deployment
+
+You could use [this script](./deploy-services.ps1) and adapt it for your own deployments.
+
 Furthermore, to deploy just the Azure services (without deploying the MSDeploy packages nor restoring the DACPAC files) you could use this button:
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2FSitecore-Azure-Quickstart-Templates%2Fmaster%2FSitecore%208.2.1%2Fmy-xm%2Fazuredeploy.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2FSitecore-Azure-Quickstart-Templates%2Fmaster%2FSitecore%208.2.1%2Fmy-xm%2Fazuredeploy-services.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
 
-# MSDeploy deployment
+# MSDeploy only deployment
 
-Important note: before running this "MSDeploy deployment" the Azure Web App should have been created by running the above "Azure services deployment".
+Important note: before running this "MSDeploy deployment" the Azure Web App should have been created by running the above "Full deployment" or "Azure services only deployment".
 
 You could use [this script](./deploy-msdeploy.ps1) and adapt it for your own deployments.

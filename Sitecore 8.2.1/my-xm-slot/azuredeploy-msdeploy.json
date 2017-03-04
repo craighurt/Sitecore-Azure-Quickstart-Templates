@@ -4,7 +4,7 @@
   "variables": {
     "webApiVersion": "2015-08-01",
     "dbApiVersion": "2014-04-01-preview",
-    "searchApiVersion": "2015-08-19",
+    "searchApiVersion": "2015-02-28",
     "redisApiVersion": "2016-04-01",
     "appInsightsApiVersion": "2014-08-01",
     "cmWebAppNameTidy": "[toLower(trim(parameters('cmWebappName')))]",
@@ -87,7 +87,7 @@
     "cmCoreSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cm-core-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cm-core-', parameters('deploymentId'), '-user')]"
     },
     "cmCoreSqldatabasePassword": {
       "type": "securestring",
@@ -97,7 +97,7 @@
     "cmMasterSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cm-master-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cm-master-', parameters('deploymentId'), '-user')]"
     },
     "cmMasterSqldatabasePassword": {
       "type": "securestring",
@@ -107,7 +107,7 @@
     "cmWebSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cm-web-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cm-web-', parameters('deploymentId'), '-user')]"
     },
     "cmWebSqldatabasePassword": {
       "type": "securestring",
@@ -117,7 +117,7 @@
     "cdCoreSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cd-core-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cd-core-', parameters('deploymentId'), '-user')]"
     },
     "cdCoreSqldatabasePassword": {
       "type": "securestring",
@@ -127,7 +127,7 @@
     "cdWebSqldatabaseUsername": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat('cd-web-', deployment().name, '-user')]"
+      "defaultValue": "[concat('cd-web-', parameters('deploymentId'), '-user')]"
     },
     "cdWebSqldatabasePassword": {
       "type": "securestring",
