@@ -28,6 +28,7 @@ Here is the list of the differences:
 * Add the `allowedValues` when possible (PR #8).
 * Fix the Search service `replicacount` property name + `apiVersion` date value (PR #8).
 * Assign `alwaysOn` and `use32BitWorkerProcess` according the `web.sku.name` value (PR #8).
+* Take into account the `linkedTemplate` pattern with this PR #9.
 
 # Deployments
 
