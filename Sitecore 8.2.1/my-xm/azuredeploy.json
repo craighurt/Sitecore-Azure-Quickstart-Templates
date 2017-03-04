@@ -34,7 +34,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "./azuredeploy-services.json"
+          "uri": "[uri(deployment().properties.templateLink.uri, '.azuredeploy-services.json')]"
         },
         "parameters": {
           "sqlserverLogin": {
@@ -53,7 +53,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "./azuredeploy-msdeploy.json"
+          "uri": "[uri(deployment().properties.templateLink.uri, '.azuredeploy-msdeploy.json')]"
         },
         "parameters": {
           "cmMsdeployPackageurl": {
