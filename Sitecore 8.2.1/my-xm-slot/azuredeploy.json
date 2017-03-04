@@ -37,7 +37,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/mathieu-benoit/Sitecore-Azure-Quickstart-Templates/521e9fcabb8441829e0a3430cbd068ce0b292f71/Sitecore%208.2.1/my-xm/azuredeploy-services.json"
+          "uri": "https://raw.githubusercontent.com/mathieu-benoit/Sitecore-Azure-Quickstart-Templates/master/Sitecore%208.2.1/my-xm-slot/azuredeploy-services.json"
         },
         "parameters": {
           "slotName": {
@@ -62,7 +62,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/mathieu-benoit/Sitecore-Azure-Quickstart-Templates/521e9fcabb8441829e0a3430cbd068ce0b292f71/Sitecore%208.2.1/my-xm/azuredeploy-msdeploy.json"
+          "uri": "https://raw.githubusercontent.com/mathieu-benoit/Sitecore-Azure-Quickstart-Templates/master/Sitecore%208.2.1/my-xm-slot/azuredeploy-msdeploy.json"
         },
         "parameters": {
           "slotName": {
