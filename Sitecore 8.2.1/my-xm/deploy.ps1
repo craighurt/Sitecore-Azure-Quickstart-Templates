@@ -27,10 +27,10 @@ $sitecoreAdminPassword = ConvertTo-SecureString ($sitecoreAdminPasswordKeyVaultS
 $sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
 $sqlServerPassword = ConvertTo-SecureString ($sqlServerPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
-$cdMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
+$cdMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SitecoreCdMsDeployPackageUrl";
 $cdMsDeployPackageUrl = $cdMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 
-$cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
+$cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SitecoreCmMsDeployPackageUrl";
 $cmMsDeployPackageUrl = $cmMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 
 $parameters = New-Object -TypeName Hashtable;
