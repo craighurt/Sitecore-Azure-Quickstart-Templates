@@ -1,7 +1,7 @@
 Param(
     [string] [Parameter(Mandatory=$true)] $ResourceGroupName,
     [string] $ResourceGroupLocation = "East US",
-    [string] $TemplateFile = ".\azuredeploy.json",
+    [string] $TemplateFile = ".\azuredeploy.json",#".\azuredeploy-msdeploy.json",
     [string] [Parameter(Mandatory=$true)] $KeyVaultName,
     [string] [Parameter(Mandatory=$true)] $SqlServerLogin
 )
