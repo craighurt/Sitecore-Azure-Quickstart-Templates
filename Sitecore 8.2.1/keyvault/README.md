@@ -1,6 +1,6 @@
 # Azure KeyVault integration for my-xm and my-xm-slot ARM Templates
 
-This folder contains the script to store in (Azure KeyVault)[https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis] the secrets necessary for [my-xm](../my-xm) and [my-xm-slot](../my-xm-slot) deployments.
+This folder contains the script to store in [Azure KeyVault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis) the secrets necessary for [my-xm](../my-xm) and [my-xm-slot](../my-xm-slot) deployments.
 
 Secrets stored:
  
