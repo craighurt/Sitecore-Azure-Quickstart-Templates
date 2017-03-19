@@ -5,6 +5,7 @@ Param(
     [string] $LicenseFile = ".\license.xml",
     [string] $SitecoreXmCdMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cd.scwdp.zip',
     [string] $SitecoreXmCmMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cm.scwdp.zip',
+    [string] [Parameter(Mandatory=$true)] $SqlServerLogin,
     [securestring] [Parameter(Mandatory=$true)] $SqlServerPassword,
     [securestring] [Parameter(Mandatory=$true)] $SitecoreAdminPassword
 )
@@ -27,9 +28,11 @@ New-AzureRmKeyVault -VaultName $KeyVaultName -ResourceGroupName $ResourceGroupNa
 $zipContent = Zip([IO.File]::ReadAllBytes($LicenseFile));
 $zipString=[System.Convert]::ToBase64String($zipContent);
 $secretLicense = ConvertTo-SecureString $zipString -AsPlainText -Force;
+$secretSqlServerLogin = ConvertTo-SecureString $SqlServerLogin -AsPlainText -Force;
 $secretSitecoreXmCdMsDeployPackageUrl = ConvertTo-SecureString $SitecoreXmCdMsDeployPackageUrl -AsPlainText -Force;
 $secretSitecoreXmCmMsDeployPackageUrl = ConvertTo-SecureString $SitecoreXmCmMsDeployPackageUrl -AsPlainText -Force;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreLicense' -SecretValue $secretLicense;
+Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SqlServerLogin' -SecretValue $secretSqlServerLogin;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SqlServerPassword' -SecretValue $SqlServerPassword;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreAdminPassword' -SecretValue $SitecoreAdminPassword;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreXmCdMsDeployPackageUrl' -SecretValue $secretSitecoreXmCdMsDeployPackageUrl;

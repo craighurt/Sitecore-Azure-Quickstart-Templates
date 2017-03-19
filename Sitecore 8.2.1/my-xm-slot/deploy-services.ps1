@@ -3,14 +3,16 @@ Param(
     [string] $ResourceGroupLocation = "East US",
     [string] [Parameter(Mandatory=$true)] $SlotName,
     [string] $TemplateFile = ".\azuredeploy.json",
-    [string] [Parameter(Mandatory=$true)] $KeyVaultName,
-    [string] [Parameter(Mandatory=$true)] $SqlServerLogin
+    [string] [Parameter(Mandatory=$true)] $KeyVaultName
 )
 
-$sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
+$sqlServerLoginKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerLogin";
+$sqlServerLogin = ConvertTo-SecureString ($sqlServerLoginKeyVaultSecret.SecretValueText) -AsPlainText -Force;
+
+$sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerPassword";
 $sqlServerPassword = ConvertTo-SecureString ($sqlServerPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
 #Login-AzureRmAccount
 #Select-AzureRmSubscription -SubscriptionName "TODO"
-New-AzureRmResourceGroupDeployment -Name $ResourceGroupName -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -slotName $SlotName -sqlserverLogin $SqlServerLogin -sqlserverPassword $sqlServerPassword;
+New-AzureRmResourceGroupDeployment -Name $ResourceGroupName -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -slotName $SlotName -sqlserverLogin $sqlServerLogin -sqlserverPassword $sqlServerPassword;
                                     

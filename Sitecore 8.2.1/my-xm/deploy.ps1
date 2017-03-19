@@ -16,27 +16,30 @@ Function Unzip
     return $output.ToArray();
 }
 
-$secretLicense = Get-AzureKeyVaultSecret $VaultName $SecureKeyVault -Name "SitecoreLicense" ;
+$secretLicense = Get-AzureKeyVaultSecret $VaultName $KeyVaultName -Name "SitecoreLicense" ;
 $zipContent = [System.Convert]::FromBase64String($secretLicense.SecretValueText);
 $licenseFile = Unzip($zipContent);
 $licenseFileContent = [System.Text.Encoding]::UTF8.GetString($licenseFile);
 
-$sitecoreAdminPasswordKeyVaultSecret = Get-AzureKeyVaultSecret $VaultName $SecureKeyVault -Name "SitecoreAdminPassword";
+$sitecoreAdminPasswordKeyVaultSecret = Get-AzureKeyVaultSecret $VaultName $KeyVaultName -Name "SitecoreAdminPassword";
 $sitecoreAdminPassword = ConvertTo-SecureString ($sitecoreAdminPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
-$sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
+$sqlServerLoginKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerLogin";
+$sqlServerLogin = ConvertTo-SecureString ($sqlServerLoginKeyVaultSecret.SecretValueText) -AsPlainText -Force;
+
+$sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerPassword";
 $sqlServerPassword = ConvertTo-SecureString ($sqlServerPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
-$cdMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SitecoreXmCdMsDeployPackageUrl";
+$cdMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreXmCdMsDeployPackageUrl";
 $cdMsDeployPackageUrl = $cdMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 
-$cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SitecoreXmCmMsDeployPackageUrl";
+$cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreXmCmMsDeployPackageUrl";
 $cmMsDeployPackageUrl = $cmMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 
 $parameters = New-Object -TypeName Hashtable;
 $parameters.Add("cdMsdeployPackageurl", $cdMsDeployPackageUrl);
 $parameters.Add("cmMsdeployPackageurl", $cmMsDeployPackageUrl);
-$parameters.Add("sqlserverLogin", $SqlServerLogin);
+$parameters.Add("sqlserverLogin", $sqlServerLogin);
 $parameters.Add("sqlserverPassword", $sqlServerPassword);
 $parameters.Add("sitecoreAdminPassword", $sitecoreAdminPassword);
 $parameters.Add("licenseXml", $licenseFileContent);

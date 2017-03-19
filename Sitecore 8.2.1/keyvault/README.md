@@ -5,6 +5,7 @@ This folder contains the script to store the secrets necessary for my-xm and my-
 Secrets stored:
  
   * SitecoreLicense
+  * SqlServerLogin
   * SqlServerPassword
   * SitecoreAdminPassword
   * SitecoreXmCdMsDeployPackageUrl
