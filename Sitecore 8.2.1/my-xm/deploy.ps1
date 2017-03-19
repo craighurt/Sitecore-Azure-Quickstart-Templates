@@ -2,8 +2,7 @@ Param(
     [string] [Parameter(Mandatory=$true)] $ResourceGroupName,
     [string] $ResourceGroupLocation = "East US",
     [string] $TemplateFile = ".\azuredeploy.json",#".\azuredeploy-msdeploy.json",
-    [string] [Parameter(Mandatory=$true)] $KeyVaultName,
-    [string] [Parameter(Mandatory=$true)] $SqlServerLogin
+    [string] [Parameter(Mandatory=$true)] $KeyVaultName
 )
 
 Function Unzip
@@ -16,12 +15,12 @@ Function Unzip
     return $output.ToArray();
 }
 
-$secretLicense = Get-AzureKeyVaultSecret $VaultName $KeyVaultName -Name "SitecoreLicense" ;
+$secretLicense = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreLicense" ;
 $zipContent = [System.Convert]::FromBase64String($secretLicense.SecretValueText);
 $licenseFile = Unzip($zipContent);
 $licenseFileContent = [System.Text.Encoding]::UTF8.GetString($licenseFile);
 
-$sitecoreAdminPasswordKeyVaultSecret = Get-AzureKeyVaultSecret $VaultName $KeyVaultName -Name "SitecoreAdminPassword";
+$sitecoreAdminPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreAdminPassword";
 $sitecoreAdminPassword = ConvertTo-SecureString ($sitecoreAdminPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
 $sqlServerLoginKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerLogin";

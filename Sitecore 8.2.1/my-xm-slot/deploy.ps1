@@ -16,12 +16,12 @@ Function Unzip
     return $output.ToArray();
 }
 
-$secretLicense = Get-AzureKeyVaultSecret $VaultName $KeyVaultName -Name "SitecoreLicense" ;
+$secretLicense = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreLicense" ;
 $zipContent = [System.Convert]::FromBase64String($secretLicense.SecretValueText);
 $licenseFile = Unzip($zipContent);
 $licenseFileContent = [System.Text.Encoding]::UTF8.GetString($licenseFile);
 
-$sitecoreAdminPasswordKeyVaultSecret = Get-AzureKeyVaultSecret $VaultName $KeyVaultName -Name "SitecoreAdminPassword";
+$sitecoreAdminPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreAdminPassword";
 $sitecoreAdminPassword = ConvertTo-SecureString ($sitecoreAdminPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
 $sqlServerLoginKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerLogin";
@@ -36,7 +36,6 @@ $cdMsDeployPackageUrl = $cdMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 $cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreXmCmMsDeployPackageUrl";
 $cmMsDeployPackageUrl = $cmMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 
-$licenseFileContent = Get-Content -Raw -Encoding UTF8 -Path $LicenseFile | Out-String;
 $parameters = New-Object -TypeName Hashtable;
 $parameters.Add("slotName", $SlotName);
 $parameters.Add("cdMsdeployPackageurl", $cdMsDeployPackageUrl);
