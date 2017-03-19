@@ -13,7 +13,7 @@
     }
   },
   "variables": {
-    "keyVault": "[resourceId(parameters('keyVaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+    "keyVaultId": "[resourceId(parameters('keyVaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
     "cmMsdeployPackageurlSecretName": "SitecoreXmCmMsDeployPackageUrl",
     "cdMsdeployPackageurlSecretName": "SitecoreXmCdMsDeployPackageUrl",
     "sqlserverLoginSecretName": "SqlServerLogin",
@@ -37,7 +37,7 @@
           "cmMsdeployPackageurl": {
             "reference": {
               "keyVault": {
-                "id": "[variables('keyVault')]"
+                "id": "[variables('keyVaultId')]"
               },
               "secretName": "[variables('cmMsdeployPackageurlSecretName')]"
             }
@@ -45,7 +45,7 @@
           "cdMsdeployPackageurl": {
             "reference": {
               "keyVault": {
-                "id": "[variables('keyVault')]"
+                "id": "[variables('keyVaultId')]"
               },
               "secretName": "[variables('cdMsdeployPackageurlSecretName')]"
             }
@@ -53,7 +53,7 @@
           "sqlserverLogin": {
             "reference": {
               "keyVault": {
-                "id": "[variables('keyVault')]"
+                "id": "[variables('keyVaultId')]"
               },
               "secretName": "[variables('sqlserverLoginSecretName')]"
             }
@@ -61,7 +61,7 @@
           "sqlserverPassword": {
             "reference": {
               "keyVault": {
-                "id": "[variables('keyVault')]"
+                "id": "[variables('keyVaultId')]"
               },
               "secretName": "[variables('sqlserverPasswordSecretName')]"
             }
@@ -72,7 +72,7 @@
           "sitecoreAdminPassword": {
             "reference": {
               "keyVault": {
-                "id": "[variables('keyVault')]"
+                "id": "[variables('keyVaultId')]"
               },
               "secretName": "[variables('sitecoreAdminPasswordSecretName')]"
             }

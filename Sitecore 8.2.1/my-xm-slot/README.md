@@ -29,8 +29,8 @@ Here is the list of the differences:
 * Add the `allowedValues` when possible (PR #8).
 * Fix the Search service `replicacount` property name + `apiVersion` date value (PR #8).
 * Assign `alwaysOn` and `use32BitWorkerProcess` according the `web.sku.name` value (PR #8).
-* Take into account the `linkedTemplate` pattern with this PR #9.
-* Integrate Azure KeyVault to store and get value of: passwords, Sitecore license file and Sitecore MS Deploy Package URLs (PR #10).
+* Take into account the `linkedTemplate` pattern with these PR #9 and PR #11.
+* Integrate Azure KeyVault to store and get value of: login/passwords, Sitecore license file and Sitecore MS Deploy Package URLs (PR #10 and PR #11).
 
 # ARM Templates
 
@@ -65,4 +65,4 @@ Furthermore, to deploy just the Azure services (without deploying the MSDeploy p
 
 Important note: before running this "MSDeploy deployment" the Azure Web App Slot should have been created by running the above "Azure services only deployment".
 
-You could use [this script](./deploy.ps1) and change the `TemplateFile` parameter to target the [azuredeploy-ms-deploy.json](./azuredeploy-ms-deploy.json) file.
+You could use [this script](./deploy.ps1) and change the `TemplateFile` parameter to target the [azuredeploy-msdeploy.json](./azuredeploy-msdeploy.json) file.

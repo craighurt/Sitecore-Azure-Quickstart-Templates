@@ -1,16 +1,18 @@
 ﻿{
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "variables": {},
   "parameters": {
-    "sqlserverLogin": {
-      "type": "string",
-      "minLength": 1
+    "keyVaultName": {
+      "type": "string"
     },
-    "sqlserverPassword": {
-      "type": "securestring",
-      "minLength": 8
+    "keyVaultResourceGroupName": {
+      "type": "string"
     }
+  },
+  "variables": {
+    "keyVaultId": "[resourceId(parameters('keyVaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+    "sqlserverLoginSecretName": "SqlServerLogin",
+    "sqlserverPasswordSecretName": "SqlServerPassword"
   },
   "resources": [
     {
@@ -24,10 +26,20 @@
         },
         "parameters": {
           "sqlserverLogin": {
-            "value": "[parameters('sqlserverLogin')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('sqlserverLoginSecretName')]"
+            }
           },
           "sqlserverPassword": {
-            "value": "[parameters('sqlserverPassword')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('sqlserverPasswordSecretName')]"
+            }
           }
         }
       }
