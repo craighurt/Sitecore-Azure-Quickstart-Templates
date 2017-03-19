@@ -40,7 +40,7 @@ Here is the list of the differences:
 
 # Deployments' Prerequisities
 
-Before running any deployment script here, you should manage your secrets in Azure KeyVault by running the associated script in the (keyvault)[../keyvault] folder. The secrets stored will be then used by the deployments.
+Before running any deployment script here, you should manage your secrets in Azure KeyVault by running the associated script in the [keyvault](../keyvault) folder. The secrets stored will be then used by the deployments.
 
 # Full deployment
 
