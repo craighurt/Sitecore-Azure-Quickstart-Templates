@@ -1,57 +1,13 @@
 # Azure KeyVault integration for my-xm and my-xm-slot ARM Templates
 
-This template creates a Sitecore XM Environment with all resources necessary to run Sitecore.
+This folder contains the script to store the secrets necessary for my-xm and my-xm-slot deployments.
 
-Resources provisioned:
+Secrets stored:
  
-  * Azure SQL databases : core, master, web
-  * Azure Search Service for content search
-  * Azure Redis Cache for session state
-  * Application Insights for diagnostics and monitoring
-  * 2 Sitecore roles: Content Delivery, Content Management
-
-    * Hosting plans: one per role
-    * Preconfigured Web Applications, based on the provided WebDeploy packages
+  * SitecoreLicense
+  * SqlServerPassword
+  * SitecoreAdminPassword
+  * SitecoreXmCdMsDeployPackageUrl
+  * SitecoreXmCmMsDeployPackageUrl
     
-# What are the differences with the official XM template/repo?
-
-Here is the list of the differences:
-* Remove the `.parameters.json` file, according to me, values shouldn't be in the source control.
-* Format the files (tab, space, newline, etc.).
-* Add the PowerShell script files to be reused.
-* Have the `parameters` in Camel Casing like explained in this PR #3
-* Remove some extra `dependsOn` to have a faster deployment like explained in this PR #4
-* Integrate Connection Strings on the Azure Web Apps on itself.
-* Add the "Deploy on Azure" button accordingly.
-* Split the azuredeploy.json to have separately 2 deployments: Azure services and the MSDeploy (PR #6).
-* Add the `allowedValues` when possible (PR #8).
-* Fix the Search service `replicacount` property name + `apiVersion` date value (PR #8).
-* Assign `alwaysOn` and `use32BitWorkerProcess` according the `web.sku.name` value (PR #8).
-* Take into account the `linkedTemplate` pattern with this PR #9.
-* Integrate Azure KeyVault to store and get value of: passwords, Sitecore license file and Sitecore MS Deploy Package URLs (PR #10).
-
-# Deployments
-
-* [azuredeploy.json](./azuredeploy.json) - manage both the Azure services deployment and the MSDeploy deployment.
-* [azuredeploy-services.json](./azuredeploy-services.json) - manage just the Azure services deployment (without the MSDeploy).
-* [azuredeploy-msdeploy.json](./azuredeploy-msdeploy.json) - manage just the MSDeploy (CM and CD) deployments.
-
-# Full deployment
-
-You could use [this script](./deploy.ps1) and adapt it for your own deployments.
-
-This will deploy first [azuredeploy-services.json](./azuredeploy-services.json) and then [azuredeploy-msdeploy.json](./azuredeploy-msdeploy.json).
-
-# Azure services only deployment
-
-You could use [this script](./deploy-services.ps1) and adapt it for your own deployments.
-
-Furthermore, to deploy just the Azure services (without deploying the MSDeploy packages nor restoring the DACPAC files) you could use this button:
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2FSitecore-Azure-Quickstart-Templates%2Fmaster%2FSitecore%208.2.1%2Fmy-xm%2Fazuredeploy-services.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
-
-# MSDeploy only deployment
-
-Important note: before running this "MSDeploy deployment" the Azure Web App should have been created by running the above "Full deployment" or "Azure services only deployment".
-
-You could use [this script](./deploy-msdeploy.ps1) and adapt it for your own deployments.
+You could use [this script](./deploy-keyvault.ps1) and adapt it for your own deployments.

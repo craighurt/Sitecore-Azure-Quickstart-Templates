@@ -28,10 +28,10 @@ $sitecoreAdminPassword = ConvertTo-SecureString ($sitecoreAdminPasswordKeyVaultS
 $sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
 $sqlServerPassword = ConvertTo-SecureString ($sqlServerPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
-$cdMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SitecoreCdMsDeployPackageUrl";
+$cdMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SitecoreXmCdMsDeployPackageUrl";
 $cdMsDeployPackageUrl = $cdMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 
-$cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SitecoreCmMsDeployPackageUrl";
+$cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SitecoreXmCmMsDeployPackageUrl";
 $cmMsDeployPackageUrl = $cmMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 
 $licenseFileContent = Get-Content -Raw -Encoding UTF8 -Path $LicenseFile | Out-String;

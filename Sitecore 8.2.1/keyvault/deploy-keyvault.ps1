@@ -3,8 +3,8 @@ Param(
     [string] [Parameter(Mandatory=$true)] $KeyVaultName,
     [string] $Location = "East US",
     [string] $LicenseFile = ".\license.xml",
-    [string] $SitecoreCdMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cd.scwdp.zip',
-    [string] $SitecoreCmMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cm.scwdp.zip',
+    [string] $SitecoreXmCdMsDeployPackageUrl = 'https://sitecoremsdeploypackages.blob.core.windows.net/xm1/Sitecore%208.2%20rev.%20161221_cd.scwdp.zip',
+    [string] $SitecoreXmCmMsDeployPackageUrl = 'https://sitecoremsdeploypackages.blob.core.windows.net/xm1/Sitecore%208.2%20rev.%20161221_cm.scwdp.zip',
     [securestring] [Parameter(Mandatory=$true)] $SqlServerPassword,
     [securestring] [Parameter(Mandatory=$true)] $SitecoreAdminPassword
 )
@@ -27,10 +27,10 @@ New-AzureRmKeyVault -VaultName $KeyVaultName -ResourceGroupName $ResourceGroupNa
 $zipContent = Zip([IO.File]::ReadAllBytes($LicenseFile));
 $zipString=[System.Convert]::ToBase64String($zipContent);
 $secretLicense = ConvertTo-SecureString $zipString -AsPlainText -Force;
-$secretSitecoreCdMsDeployPackageUrl = ConvertTo-SecureString $SitecoreCdMsDeployPackageUrl -AsPlainText -Force;
-$secretSitecoreCmMsDeployPackageUrl = ConvertTo-SecureString $SitecoreCmMsDeployPackageUrl -AsPlainText -Force;
+$secretSitecoreXmCdMsDeployPackageUrl = ConvertTo-SecureString $SitecoreXmCdMsDeployPackageUrl -AsPlainText -Force;
+$secretSitecoreXmCmMsDeployPackageUrl = ConvertTo-SecureString $SitecoreXmCmMsDeployPackageUrl -AsPlainText -Force;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreLicense' -SecretValue $secretLicense;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SqlServerPassword' -SecretValue $SqlServerPassword;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreAdminPassword' -SecretValue $SitecoreAdminPassword;
-Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreCdMsDeployPackageUrl' -SecretValue $secretSitecoreCdMsDeployPackageUrl;
-Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreCmMsDeployPackageUrl' -SecretValue $secretSitecoreCmMsDeployPackageUrl;
+Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreXmCdMsDeployPackageUrl' -SecretValue $secretSitecoreXmCdMsDeployPackageUrl;
+Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreXmCmMsDeployPackageUrl' -SecretValue $secretSitecoreXmCmMsDeployPackageUrl;
