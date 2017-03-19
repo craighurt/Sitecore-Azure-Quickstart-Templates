@@ -41,6 +41,7 @@ Choose the compatible templates for your Sitecore version:
 
 My playground with custom changes. Use them, share them, adapt them and let's be creative! ;)
 
+* [keyvault](Sitecore%208.2.1/keyvault) - more details by following the link.
 * [my-xm](Sitecore%208.2.1/my-xm) - more details by following the link.
 * [my-xm-slot](Sitecore%208.2.1/my-xm-slot) - more details by following the link.
 

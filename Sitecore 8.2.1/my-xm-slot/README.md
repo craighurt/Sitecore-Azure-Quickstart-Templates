@@ -18,6 +18,7 @@ Resources provisioned:
 # What are the differences with the XM-SLOT template/repo?
 
 Here is the list of the differences:
+* Remove the `.parameters.json` file, for my mind, values shouldn't be in the source control.
 * Format the files (tab, space, newline, etc.).
 * Add the PowerShell script files to be reused.
 * Have the `parameters` in Camel Casing like explained in this PR #3
@@ -29,13 +30,18 @@ Here is the list of the differences:
 * Fix the Search service `replicacount` property name + `apiVersion` date value (PR #8).
 * Assign `alwaysOn` and `use32BitWorkerProcess` according the `web.sku.name` value (PR #8).
 * Take into account the `linkedTemplate` pattern with this PR #9.
+* Integrate Azure KeyVault to store and get value of: passwords, Sitecore license file and Sitecore MS Deploy Package URLs (PR #10).
 
-# Deployments
+# ARM Templates
 
 In this folder, the deployments are split into 3 main files:
 * [azuredeploy.json](./azuredeploy.json) - manage both the Azure services deployment and the MSDeploy deployment.
 * [azuredeploy-services.json](./azuredeploy-services.json) - manage just the Azure services deployment (without the MSDeploy).
 * [azuredeploy-msdeploy.json](./azuredeploy-msdeploy.json) - manage just the MSDeploy (CM and CD) deployments.
+
+# Deployments' Prerequisities
+
+Before running any deployment script here, you should manage your secrets in Azure KeyVault by running the associated script in the (keyvault)[../keyvault] folder. The secrets stored will be then used by the deployments.
 
 # Full deployment
 
@@ -59,4 +65,4 @@ Furthermore, to deploy just the Azure services (without deploying the MSDeploy p
 
 Important note: before running this "MSDeploy deployment" the Azure Web App Slot should have been created by running the above "Azure services only deployment".
 
-You could use [this script](./deploy-msdeploy.ps1) and adapt it for your own deployments.
+You could use [this script](./deploy.ps1) and change the `TemplateFile` parameter to target the [azuredeploy-ms-deploy.json](./azuredeploy-ms-deploy.json) file.
