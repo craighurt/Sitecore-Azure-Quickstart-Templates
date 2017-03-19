@@ -2,8 +2,6 @@ Param(
     [string] [Parameter(Mandatory=$true)] $ResourceGroupName,
     [string] $ResourceGroupLocation = "East US",
     [string] $TemplateFile = ".\azuredeploy.json",
-    [string] $CdMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cd.scwdp.zip',
-    [string] $CmMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cm.scwdp.zip',
     [string] [Parameter(Mandatory=$true)] $KeyVaultName,
     [string] [Parameter(Mandatory=$true)] $SqlServerLogin
 )
@@ -24,14 +22,20 @@ $licenseFile = Unzip($zipContent);
 $licenseFileContent = [System.Text.Encoding]::UTF8.GetString($licenseFile);
 
 $sitecoreAdminPasswordKeyVaultSecret = Get-AzureKeyVaultSecret $VaultName $SecureKeyVault -Name "SitecoreAdminPassword";
-$sitecoreAdminPassword = ConvertTo-SecureString ($secretSitecorePass.SecretValueText) -AsPlainText -Force;
+$sitecoreAdminPassword = ConvertTo-SecureString ($sitecoreAdminPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
 $sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
-$sqlServerPassword = ConvertTo-SecureString ($secretSqlPass.SecretValueText) -AsPlainText -Force;
+$sqlServerPassword = ConvertTo-SecureString ($sqlServerPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
+
+$cdMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
+$cdMsDeployPackageUrl = $cdMsDeployPackageUrlKeyVaultSecret.SecretValueText;
+
+$cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
+$cmMsDeployPackageUrl = $cmMsDeployPackageUrlKeyVaultSecret.SecretValueText;
 
 $parameters = New-Object -TypeName Hashtable;
-$parameters.Add("cdMsdeployPackageurl", $CdMsDeployPackageUrl);
-$parameters.Add("cmMsdeployPackageurl", $CmMsDeployPackageUrl);
+$parameters.Add("cdMsdeployPackageurl", $cdMsDeployPackageUrl);
+$parameters.Add("cmMsdeployPackageurl", $cmMsDeployPackageUrl);
 $parameters.Add("sqlserverLogin", $SqlServerLogin);
 $parameters.Add("sqlserverPassword", $sqlServerPassword);
 $parameters.Add("sitecoreAdminPassword", $sitecoreAdminPassword);

@@ -3,6 +3,8 @@ Param(
     [string] [Parameter(Mandatory=$true)] $KeyVaultName,
     [string] $Location = "East US",
     [string] $LicenseFile = ".\license.xml",
+    [string] $SitecoreCdMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cd.scwdp.zip',
+    [string] $SitecoreCmMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cm.scwdp.zip',
     [securestring] [Parameter(Mandatory=$true)] $SqlServerPassword,
     [securestring] [Parameter(Mandatory=$true)] $SitecoreAdminPassword
 )
@@ -28,3 +30,5 @@ $secretLicense = ConvertTo-SecureString $zipString -AsPlainText -Force
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreLicense' -SecretValue $secretLicense;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SqlServerPassword' -SecretValue $SqlServerPassword;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreAdminPassword' -SecretValue $SitecoreAdminPassword;
+Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreCdMsDeployPackageUrl' -SecretValue $SitecoreCdMsDeployPackageUrl;
+Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreCmMsDeployPackageUrl' -SecretValue $SitecoreCmMsDeployPackageUrl;

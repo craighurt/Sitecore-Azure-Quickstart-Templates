@@ -7,7 +7,7 @@ Param(
 )
 
 $sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $SecureKeyVault -Name "SqlServerPassword";
-$sqlServerPassword = ConvertTo-SecureString ($secretSqlPass.SecretValueText) -AsPlainText -Force;
+$sqlServerPassword = ConvertTo-SecureString ($sqlServerPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
 
 #Login-AzureRmAccount
 #Select-AzureRmSubscription -SubscriptionName "TODO"
