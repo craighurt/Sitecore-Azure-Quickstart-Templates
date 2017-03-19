@@ -3,8 +3,8 @@ Param(
     [string] [Parameter(Mandatory=$true)] $KeyVaultName,
     [string] $Location = "East US",
     [string] $LicenseFile = ".\license.xml",
-    [string] $SitecoreXmCdMsDeployPackageUrl = 'https://sitecoremsdeploypackages.blob.core.windows.net/xm1/Sitecore%208.2%20rev.%20161221_cd.scwdp.zip',
-    [string] $SitecoreXmCmMsDeployPackageUrl = 'https://sitecoremsdeploypackages.blob.core.windows.net/xm1/Sitecore%208.2%20rev.%20161221_cm.scwdp.zip',
+    [string] $SitecoreXmCdMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cd.scwdp.zip',
+    [string] $SitecoreXmCmMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cm.scwdp.zip',
     [securestring] [Parameter(Mandatory=$true)] $SqlServerPassword,
     [securestring] [Parameter(Mandatory=$true)] $SitecoreAdminPassword
 )
