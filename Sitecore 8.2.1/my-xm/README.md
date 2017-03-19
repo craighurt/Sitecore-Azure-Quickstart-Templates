@@ -62,4 +62,4 @@ or without Azure KeyVault secrets:
 
 Important note: before running this "MSDeploy deployment" the Azure Web App should have been created by running the above "Full deployment" or "Azure services only deployment".
 
-You could use [this script](./deploy.ps1) and change the `TemplateFile` parameter to target the [azuredeploy-ms-deploy.json](./azuredeploy-ms-deploy.json) file.
+You could use [this script](./deploy.ps1) and change the `TemplateFile` parameter to target the [azuredeploy-msdeploy.json](./azuredeploy-msdeploy.json) file.

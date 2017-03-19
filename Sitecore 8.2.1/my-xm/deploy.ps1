@@ -28,7 +28,7 @@ $parameters.Add("keyVaultResourceGroupName", $KeyVaultResourceGroupName);
 
 #Login-AzureRmAccount
 #Select-AzureRmSubscription -SubscriptionName "TODO"
+#New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation;
 
-New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation;
 New-AzureRmResourceGroupDeployment -Name $ResourceGroupName -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -TemplateParameterObject $parameters;
                                     
