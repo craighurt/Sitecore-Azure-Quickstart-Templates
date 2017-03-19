@@ -24,7 +24,7 @@ Function Zip
 #Select-AzureRmSubscription -SubscriptionName "TODO"
 #New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location;
 
-New-AzureRmKeyVault -VaultName $KeyVaultName -ResourceGroupName $ResourceGroupName -Location $Location;
+New-AzureRmKeyVault -VaultName $KeyVaultName -ResourceGroupName $ResourceGroupName -Location $Location -EnabledForTemplateDeployment:$true;
 $zipContent = Zip([IO.File]::ReadAllBytes($LicenseFile));
 $zipString=[System.Convert]::ToBase64String($zipContent);
 $secretLicense = ConvertTo-SecureString $zipString -AsPlainText -Force;

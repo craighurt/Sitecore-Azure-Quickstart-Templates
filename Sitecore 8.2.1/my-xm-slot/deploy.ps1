@@ -3,7 +3,8 @@ Param(
     [string] $ResourceGroupLocation = "East US",
     [string] [Parameter(Mandatory=$true)] $SlotName,
     [string] $TemplateFile = ".\azuredeploy.json",#".\azuredeploy-msdeploy.json",
-    [string] [Parameter(Mandatory=$true)] $KeyVaultName
+    [string] [Parameter(Mandatory=$true)] $KeyVaultName,
+    [string] [Parameter(Mandatory=$true)] $KeyVaultResourceGroupName
 )
 
 Function Unzip
@@ -21,29 +22,11 @@ $zipContent = [System.Convert]::FromBase64String($secretLicense.SecretValueText)
 $licenseFile = Unzip($zipContent);
 $licenseFileContent = [System.Text.Encoding]::UTF8.GetString($licenseFile);
 
-$sitecoreAdminPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreAdminPassword";
-$sitecoreAdminPassword = ConvertTo-SecureString ($sitecoreAdminPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
-
-$sqlServerLoginKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerLogin";
-$sqlServerLogin = $sqlServerLoginKeyVaultSecret.SecretValueText;
-
-$sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerPassword";
-$sqlServerPassword = ConvertTo-SecureString ($sqlServerPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
-
-$cdMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreXmCdMsDeployPackageUrl";
-$cdMsDeployPackageUrl = $cdMsDeployPackageUrlKeyVaultSecret.SecretValueText;
-
-$cmMsDeployPackageUrlKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreXmCmMsDeployPackageUrl";
-$cmMsDeployPackageUrl = $cmMsDeployPackageUrlKeyVaultSecret.SecretValueText;
-
 $parameters = New-Object -TypeName Hashtable;
 $parameters.Add("slotName", $SlotName);
-$parameters.Add("cdMsdeployPackageurl", $cdMsDeployPackageUrl);
-$parameters.Add("cmMsdeployPackageurl", $cmMsDeployPackageUrl);
-$parameters.Add("sqlserverLogin", $sqlServerLogin);
-$parameters.Add("sqlserverPassword", $sqlServerPassword);
-$parameters.Add("sitecoreAdminPassword", $sitecoreAdminPassword);
 $parameters.Add("licenseXml", $licenseFileContent);
+$parameters.Add("keyVaultName", $KeyVaultName);
+$parameters.Add("keyVaultResourceGroupName", $KeyVaultResourceGroupName);
 
 #Login-AzureRmAccount
 #Select-AzureRmSubscription -SubscriptionName "TODO"

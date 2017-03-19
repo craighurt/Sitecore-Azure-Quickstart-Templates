@@ -1,33 +1,27 @@
 ﻿{
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "variables": {},
   "parameters": {
     "slotName": {
       "type": "string"
     },
-    "cmMsdeployPackageurl": {
-      "type": "securestring"
+    "keyVaultName": {
+      "type": "string"
     },
-    "cdMsdeployPackageurl": {
-      "type": "securestring"
-    },
-    "sqlserverLogin": {
-      "type": "string",
-      "minLength": 1
-    },
-    "sqlserverPassword": {
-      "type": "securestring",
-      "minLength": 8
+    "keyVaultResourceGroupName": {
+      "type": "string"
     },
     "licenseXml": {
       "type": "securestring"
-    },
-    "sitecoreAdminPassword": {
-      "type": "securestring",
-      "minLength": 8,
-      "maxLength": 128
     }
+  },
+  "variables": {
+    "keyVaultId": "[resourceId(parameters('keyVaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+    "cmMsdeployPackageurlSecretName": "SitecoreXmCmMsDeployPackageUrl",
+    "cdMsdeployPackageurlSecretName": "SitecoreXmCdMsDeployPackageUrl",
+    "sqlserverLoginSecretName": "SqlServerLogin",
+    "sqlserverPasswordSecretName": "SqlServerPassword",
+    "sitecoreAdminPasswordSecretName": "SitecoreAdminPassword"
   },
   "resources": [
     {
@@ -44,10 +38,20 @@
             "value": "[parameters('slotName')]"
           },
           "sqlserverLogin": {
-            "value": "[parameters('sqlserverLogin')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('sqlserverLoginSecretName')]"
+            }
           },
           "sqlserverPassword": {
-            "value": "[parameters('sqlserverPassword')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('sqlserverPasswordSecretName')]"
+            }
           }
         }
       }
@@ -69,22 +73,47 @@
             "value": "[parameters('slotName')]"
           },
           "cmMsdeployPackageurl": {
-            "value": "[parameters('cmMsdeployPackageurl')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('cmMsdeployPackageurlSecretName')]"
+            }
           },
           "cdMsdeployPackageurl": {
-            "value": "[parameters('cdMsdeployPackageurl')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('cdMsdeployPackageurlSecretName')]"
+            }
           },
           "sqlserverLogin": {
-            "value": "[parameters('sqlserverLogin')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('sqlserverLoginSecretName')]"
+            }
           },
           "sqlserverPassword": {
-            "value": "[parameters('sqlserverPassword')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('sqlserverPasswordSecretName')]"
+            }
           },
           "licenseXml": {
             "value": "[parameters('licenseXml')]"
           },
           "sitecoreAdminPassword": {
-            "value": "[parameters('sitecoreAdminPassword')]"
+            "reference": {
+              "keyVault": {
+                "id": "[variables('keyVaultId')]"
+              },
+              "secretName": "[variables('sitecoreAdminPasswordSecretName')]"
+            }
           }
         }
       }
