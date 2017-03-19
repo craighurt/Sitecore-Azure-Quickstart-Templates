@@ -1,4 +1,4 @@
-# Sitecore XM Environment (customized, non official!)
+# Azure KeyVault integration for my-xm and my-xm-slot ARM Templates
 
 This template creates a Sitecore XM Environment with all resources necessary to run Sitecore.
 

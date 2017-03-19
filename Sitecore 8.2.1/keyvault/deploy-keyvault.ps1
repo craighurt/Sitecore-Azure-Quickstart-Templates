@@ -19,16 +19,18 @@ Function Zip
     return $output.ToArray();
 }
 
-#Login-AzureRmAccount
+#Login-AzureRmAccount;
 #Select-AzureRmSubscription -SubscriptionName "TODO"
 #New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location;
 
 New-AzureRmKeyVault -VaultName $KeyVaultName -ResourceGroupName $ResourceGroupName -Location $Location;
 $zipContent = Zip([IO.File]::ReadAllBytes($LicenseFile));
 $zipString=[System.Convert]::ToBase64String($zipContent);
-$secretLicense = ConvertTo-SecureString $zipString -AsPlainText -Force
+$secretLicense = ConvertTo-SecureString $zipString -AsPlainText -Force;
+$secretSitecoreCdMsDeployPackageUrl = ConvertTo-SecureString $SitecoreCdMsDeployPackageUrl -AsPlainText -Force;
+$secretSitecoreCmMsDeployPackageUrl = ConvertTo-SecureString $SitecoreCmMsDeployPackageUrl -AsPlainText -Force;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreLicense' -SecretValue $secretLicense;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SqlServerPassword' -SecretValue $SqlServerPassword;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreAdminPassword' -SecretValue $SitecoreAdminPassword;
-Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreCdMsDeployPackageUrl' -SecretValue $SitecoreCdMsDeployPackageUrl;
-Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreCmMsDeployPackageUrl' -SecretValue $SitecoreCmMsDeployPackageUrl;
+Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreCdMsDeployPackageUrl' -SecretValue $secretSitecoreCdMsDeployPackageUrl;
+Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreCmMsDeployPackageUrl' -SecretValue $secretSitecoreCmMsDeployPackageUrl;

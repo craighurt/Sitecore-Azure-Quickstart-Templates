@@ -18,6 +18,7 @@ Resources provisioned:
 # What are the differences with the XM-SLOT template/repo?
 
 Here is the list of the differences:
+* Remove the `.parameters.json` file, for my mind, values shouldn't be in the source control.
 * Format the files (tab, space, newline, etc.).
 * Add the PowerShell script files to be reused.
 * Have the `parameters` in Camel Casing like explained in this PR #3
@@ -29,6 +30,7 @@ Here is the list of the differences:
 * Fix the Search service `replicacount` property name + `apiVersion` date value (PR #8).
 * Assign `alwaysOn` and `use32BitWorkerProcess` according the `web.sku.name` value (PR #8).
 * Take into account the `linkedTemplate` pattern with this PR #9.
+* Integrate Azure KeyVault to store and get value of: passwords, Sitecore license file and Sitecore MS Deploy Package URLs (PR #10).
 
 # Deployments
 
