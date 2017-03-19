@@ -6,7 +6,7 @@ Param(
 )
 
 $sqlServerLoginKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerLogin";
-$sqlServerLogin = ConvertTo-SecureString ($sqlServerLoginKeyVaultSecret.SecretValueText) -AsPlainText -Force;
+$sqlServerLogin = $sqlServerLoginKeyVaultSecret.SecretValueText;
 
 $sqlServerPasswordKeyVaultSecret = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SqlServerPassword";
 $sqlServerPassword = ConvertTo-SecureString ($sqlServerPasswordKeyVaultSecret.SecretValueText) -AsPlainText -Force;
