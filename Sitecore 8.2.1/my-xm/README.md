@@ -63,3 +63,7 @@ or without Azure KeyVault secrets:
 Important note: before running this "MSDeploy deployment" the Azure Web App should have been created by running the above "Full deployment" or "Azure services only deployment".
 
 You could use [this script](./deploy.ps1) and change the `TemplateFile` parameter to target the [azuredeploy-msdeploy.json](./azuredeploy-msdeploy.json) file.
+
+# Visual Studio Team Service (VSTS) deployment
+
+You could find my entire documentation to setup the associated Visual Studio Team Service (VSTS) deployment with this [blog article](https://alwaysupalwayson.blogspot.com/2017/03/advanced-sitecore-arm-templates.html).

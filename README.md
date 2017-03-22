@@ -45,4 +45,8 @@ My playground with custom changes. Use them, share them, adapt them and let's be
 * [my-xm](Sitecore%208.2.1/my-xm) - more details by following the link.
 * [my-xm-slot](Sitecore%208.2.1/my-xm-slot) - more details by following the link.
 
+## Visual Studio Team Service (VSTS) deployment
+
+Furthermore, you could find my entire documentation to setup the associated Visual Studio Team Service (VSTS) deployment with this [blog article](https://alwaysupalwayson.blogspot.com/2017/03/advanced-sitecore-arm-templates.html).
+
 
