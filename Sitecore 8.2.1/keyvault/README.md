@@ -2,14 +2,14 @@
 
 This folder contains the script to store in [Azure KeyVault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis) the secrets necessary for [my-xm](../my-xm) and [my-xm-slot](../my-xm-slot) deployments.
 
-Secrets stored:
+Here are the Secrets stored:
  
-  * SitecoreLicense
-  * SqlServerLogin
-  * SqlServerPassword
-  * SitecoreAdminPassword
-  * SitecoreXmCdMsDeployPackageUrl
-  * SitecoreXmCmMsDeployPackageUrl
+  * SitecoreLicense - the Sitecore License.xml file
+  * SqlServerLogin - the login to connect on the SQL Server
+  * SqlServerPassword - the password to connect on the SQL Server
+  * SitecoreAdminPassword - the password of the Sitecore admin web console/area
+  * SitecoreXmCdMsDeployPackageUrl - The url of the Sitecore XM MSDeploy package (CD)
+  * SitecoreXmCmMsDeployPackageUrl - The url of the Sitecore XM MSDeploy package (CM)
     
 You could use [this script](./deploy-keyvault.ps1) and adapt it for your own deployments.
 
