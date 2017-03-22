@@ -22,3 +22,12 @@ TIPS for the value of the `VSTSServicePrincipalName` parameter: if you are going
 - Click on "Configure" and scroll down until you find the `APP ID URI` field under the `Single sign-on` section.
 - This value will be what you have to pass for the `VSTSServicePrincipalName` parameter of the PowerShell script.
   - If the endpoint was created automatically by VSTS, the value should be something like: "https://VisualStudio/SPN..."
+
+After running the script properly you should see these results within the Azure portal for the associated Azure KeyVault service created:
+
+![KeyVault - Secrets](./img/KeyVault-Secrets.PNG)
+
+![KeyVault - Access Policies](./img/KeyVault-AccessPolicies.PNG)
+
+![KeyVault - Advanced Access Policies](./img/KeyVault-AdvancedAccessPolicies.PNG)
+
