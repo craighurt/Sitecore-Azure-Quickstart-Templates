@@ -17,8 +17,8 @@ TIPS for the value of the `VSTSServicePrincipalName` parameter: if you are going
 
 - In VSTS, create an [Azure Resource Manager service endpoint](https://www.visualstudio.com/en-us/docs/build/concepts/library/service-endpoints#sep-azure-rm)
   - It will be automatically done/set up for you like explain in [this link](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/) (but the manual approach could be done as well)
-- Once the endpoint is created, click on it and then click on the "Manage Service Principal" link.
+- Once the endpoint is created, click on it to open it and then click on the "Manage Service Principal" link.
 - The old Azure portal will be opened on the associated Active Directory service
 - Click on "Configure" and scroll down until you find the `APP ID URI` field under the `Single sign-on` section.
 - This value will be what you have to pass for the `VSTSServicePrincipalName` parameter of the PowerShell script.
-  - If the endpoint was created automatically by VSTS, the value should something like: "https://VisualStudio/SPN..."
+  - If the endpoint was created automatically by VSTS, the value should be something like: "https://VisualStudio/SPN..."
