@@ -7,7 +7,8 @@ Param(
     [string] $SitecoreXmCmMsDeployPackageUrl = 'TODO/xm1/Sitecore%208.2%20rev.%20161221_cm.scwdp.zip',
     [string] [Parameter(Mandatory=$true)] $SqlServerLogin,
     [securestring] [Parameter(Mandatory=$true)] $SqlServerPassword,
-    [securestring] [Parameter(Mandatory=$true)] $SitecoreAdminPassword
+    [securestring] [Parameter(Mandatory=$true)] $SitecoreAdminPassword,
+    [string] $VSTSServicePrincipalName
 )
 
 Function Zip
@@ -31,9 +32,17 @@ $secretLicense = ConvertTo-SecureString $zipString -AsPlainText -Force;
 $secretSqlServerLogin = ConvertTo-SecureString $SqlServerLogin -AsPlainText -Force;
 $secretSitecoreXmCdMsDeployPackageUrl = ConvertTo-SecureString $SitecoreXmCdMsDeployPackageUrl -AsPlainText -Force;
 $secretSitecoreXmCmMsDeployPackageUrl = ConvertTo-SecureString $SitecoreXmCmMsDeployPackageUrl -AsPlainText -Force;
+
+#Set Secrets
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreLicense' -SecretValue $secretLicense;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SqlServerLogin' -SecretValue $secretSqlServerLogin;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SqlServerPassword' -SecretValue $SqlServerPassword;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreAdminPassword' -SecretValue $SitecoreAdminPassword;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreXmCdMsDeployPackageUrl' -SecretValue $secretSitecoreXmCdMsDeployPackageUrl;
 Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name 'SitecoreXmCmMsDeployPackageUrl' -SecretValue $secretSitecoreXmCmMsDeployPackageUrl;
+
+#Set VSTS Policies
+IF ([string]::IsNullOrWhitespace($VSTSServicePrincipalName)){
+} else {
+    Set-AzureRmKeyVaultAccessPolicy -VaultName $KeyVaultName -ServicePrincipalName $VSTSServicePrincipalName -PermissionsToSecrets 'Get';
+}
