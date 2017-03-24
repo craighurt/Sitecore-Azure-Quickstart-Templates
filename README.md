@@ -32,6 +32,7 @@ Choose the compatible templates for your Sitecore version:
 * [xp0](Sitecore%208.2.1/xp0) - official template "as-is"
 * [xp](Sitecore%208.2.1/xp) - official template "as-is"
 * [xm](Sitecore%208.2.1/xm) - official template "as-is"
+* [xdb](Sitecore%208.2.1/xdb) - official template "as-is"
 
 ## Unofficial Sitecore template to create an Azure Web App Slot for XM
 
