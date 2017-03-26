@@ -587,8 +587,8 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('cmHostingPlanNameTidy'))]",
         "siteConfig": {
-          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[parameters('cmHostingplanSkuname')]]",
-          "alwaysOn": "[variables('webAlwaysOn')[parameters('cmHostingplanSkuname')]]",
+          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[variables('skuMap')[parameters('sitecoreSku')].cmHostingPlan.skuName]]",
+          "alwaysOn": "[variables('webAlwaysOn')[variables('skuMap')[parameters('sitecoreSku')].cmHostingPlan.skuName]]",
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
@@ -649,8 +649,8 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('cdHostingPlanNameTidy'))]",
         "siteConfig": {
-          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[parameters('cdHostingplanSkuname')]]",
-          "alwaysOn": "[variables('webAlwaysOn')[parameters('cdHostingplanSkuname')]]",
+          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[variables('skuMap')[parameters('sitecoreSku')].cdHostingPlan.skuName]]",
+          "alwaysOn": "[variables('webAlwaysOn')[variables('skuMap')[parameters('sitecoreSku')].cdHostingPlan.skuName]]",
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
