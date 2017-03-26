@@ -37,7 +37,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/mathieu-benoit/Sitecore-Azure-Quickstart-Templates/mathieu-benoit/sitecore-sku-integration-into-my-custom-templates/Sitecore%208.2.1/my-xm/azuredeploy-nested-services.json"
+          "uri": "https://raw.githubusercontent.com/mathieu-benoit/Sitecore-Azure-Quickstart-Templates/master/Sitecore%208.2.1/my-xm/azuredeploy-nested-services.json"
         },
         "parameters": {
           "sitecoreSku": {
