@@ -46,6 +46,218 @@
       "P2": "false",
       "P3": "false",
       "P4": "false"
+    },
+    "skuMap": {
+      "custom": {
+        "cmHostingPlan": {
+          "skuName": "[parameters('cmHostingplanSkuname')]",
+          "skuCapacity": "[parameters('cmHostingplanSkucapacity')]"
+        },
+        "cdHostingPlan": {
+          "skuName": "[parameters('cdHostingplanSkuname')]",
+          "skuCapacity": "[parameters('cdHostingplanSkucapacity')]"
+        },
+        "coreSqlDatabase": {
+          "edition": "[parameters('sqldatabaseEdition')]",
+          "maxSize": "[parameters('sqldatabaseMaxsize')]",
+          "serviceObjectiveLevel": "[parameters('sqldatabaseServiceobjectivelevel')]"
+        },
+        "masterSqlDatabase": {
+          "edition": "[parameters('sqldatabaseEdition')]",
+          "maxSize": "[parameters('sqldatabaseMaxsize')]",
+          "serviceObjectiveLevel": "[parameters('sqldatabaseServiceobjectivelevel')]"
+        },
+        "webSqlDatabase": {
+          "edition": "[parameters('sqldatabaseEdition')]",
+          "maxSize": "[parameters('sqldatabaseMaxsize')]",
+          "serviceObjectiveLevel": "[parameters('sqldatabaseServiceobjectivelevel')]"
+        },
+        "searchservice": {
+          "skuName": "[parameters('searchserviceSkuname')]",
+          "partitions": "1",
+          "replicas": "[parameters('searchserviceReplicacount')]"
+        },
+        "redisCache": {
+          "skuName": "[parameters('rediscacheSkuname')]",
+          "skuFamily": "[parameters('rediscacheSkufamily')]",
+          "skuCapacity": "[int(parameters('rediscacheSkucapacity'))]"
+        }
+      },
+      "xM1": {
+        "cmHostingPlan": {
+          "skuName": "S1",
+          "skuCapacity": "1"
+        },
+        "cdHostingPlan": {
+          "skuName": "S1",
+          "skuCapacity": "1"
+        },
+        "coreSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "masterSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "webSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "searchservice": {
+          "skuName": "Standard",
+          "partitions": "1",
+          "replicas": "1"
+        },
+        "redisCache": {
+          "skuName": "Standard",
+          "skuFamily": "C",
+          "skuCapacity": "1"
+        }
+      },
+      "xM2": {
+        "cmHostingPlan": {
+          "skuName": "S1",
+          "skuCapacity": 1
+        },
+        "cdHostingPlan": {
+          "skuName": "S1",
+          "skuCapacity": 2
+        },
+        "coreSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "masterSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "webSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "searchservice": {
+          "skuName": "Standard",
+          "partitions": 1,
+          "replicas": 1
+        },
+        "redisCache": {
+          "skuName": "Standard",
+          "skuFamily": "C",
+          "skuCapacity": 1
+        }
+      },
+      "xM3": {
+        "cmHostingPlan": {
+          "skuName": "S1",
+          "skuCapacity": 1
+        },
+        "cdHostingPlan": {
+          "skuName": "S1",
+          "skuCapacity": 3
+        },
+        "coreSqlDatabase": {
+          "ddition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "masterSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "webSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "searchservice": {
+          "skuName": "Standard",
+          "partitions": 1,
+          "replicas": 1
+        },
+        "redisCache": {
+          "skuName": "Standard",
+          "skuFamily": "C",
+          "skuCapacity": 1
+        }
+      },
+      "xM4": {
+        "cmHostingPlan": {
+          "skuName": "S1",
+          "skuCapacity": 1
+        },
+        "cdHostingPlan": {
+          "skuName": "S3",
+          "skuCapacity": 4
+        },
+        "coreSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "masterSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "webSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S2"
+        },
+        "searchservice": {
+          "skuName": "Standard",
+          "partitions": 1,
+          "replicas": 1
+        },
+        "redisCache": {
+          "skuName": "Standard",
+          "skuFamily": "C",
+          "skuCapacity": 1
+        }
+      },
+      "xM5": {
+        "cmHostingPlan": {
+          "skuName": "S1",
+          "skuCapacity": 1
+        },
+        "cdHostingPlan": {
+          "skuName": "S3",
+          "skuCapacity": 8
+        },
+        "coreSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "masterSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S1"
+        },
+        "webSqlDatabase": {
+          "edition": "Standard",
+          "maxSize": "268435456000",
+          "serviceObjectiveLevel": "S3"
+        },
+        "searchservice": {
+          "skuName": "Standard",
+          "partitions": 1,
+          "replicas": 1
+        },
+        "redisCache": {
+          "skuName": "Standard",
+          "skuFamily": "C",
+          "skuCapacity": 1
+        }
+      }
     }
   },
   "parameters": {
@@ -246,7 +458,7 @@
     },
     "sqldatabaseMaxsize": {
       "type": "string",
-      "defaultValue": "10737418240"
+      "defaultValue": "268435456000"
     },
     "sqldatabaseServiceobjectivelevel": {
       "type": "string",
@@ -283,7 +495,7 @@
     },
     "rediscacheSkuname": {
       "type": "string",
-      "defaultValue": "Basic",
+      "defaultValue": "Standard",
       "allowedValues": [
         "Basic",
         "Standard",
@@ -300,7 +512,7 @@
     },
     "rediscacheSkucapacity": {
       "type": "string",
-      "defaultValue": "0",
+      "defaultValue": "1",
       "allowedValues": [
         "0",
         "1",
@@ -318,6 +530,21 @@
     "webAppRemoteDebuggingEnabled": {
       "type": "bool",
       "defaultValue": false
+    },
+    "sitecoreSku": {
+      "type": "string",
+      "defaultValue": "xM1",
+      "allowedValues": [
+        "custom",
+        "xM1",
+        "xM2",
+        "xM3",
+        "xM4",
+        "xM5"
+      ],
+      "metadata": {
+        "description": "Sitecore SKU controls the sizes and service levels of the provisioned resources"
+      }
     }
   },
   "resources": [
@@ -326,8 +553,8 @@
       "name": "[variables('cmHostingPlanNameTidy')]",
       "apiVersion": "[variables('webApiVersion')]",
       "sku": {
-        "name": "[parameters('cmHostingplanSkuname')]",
-        "capacity": "[parameters('cmHostingplanSkucapacity')]"
+        "name": "[variables('skuMap')[parameters('sitecoreSku')].cmHostingPlan.skuName]",
+        "capacity": "[variables('skuMap')[parameters('sitecoreSku')].cmHostingPlan.skuCapacity]"
       },
       "properties": {
         "name": "[variables('cmHostingPlanNameTidy')]"
@@ -342,8 +569,8 @@
       "name": "[variables('cdHostingPlanNameTidy')]",
       "apiVersion": "[variables('webApiVersion')]",
       "sku": {
-        "name": "[parameters('cdHostingplanSkuname')]",
-        "capacity": "[parameters('cdHostingplanSkucapacity')]"
+        "name": "[variables('skuMap')[parameters('sitecoreSku')].cdHostingPlan.skuName]",
+        "capacity": "[variables('skuMap')[parameters('sitecoreSku')].cdHostingPlan.skuCapacity]"
       },
       "properties": {
         "name": "[variables('cdHostingPlanNameTidy')]"
@@ -360,8 +587,8 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('cmHostingPlanNameTidy'))]",
         "siteConfig": {
-          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[parameters('cmHostingplanSkuname')]]",
-          "alwaysOn": "[variables('webAlwaysOn')[parameters('cmHostingplanSkuname')]]",
+          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[variables('skuMap')[parameters('sitecoreSku')].cmHostingPlan.skuName]]",
+          "alwaysOn": "[variables('webAlwaysOn')[variables('skuMap')[parameters('sitecoreSku')].cmHostingPlan.skuName]]",
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
@@ -422,8 +649,8 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('cdHostingPlanNameTidy'))]",
         "siteConfig": {
-          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[parameters('cdHostingplanSkuname')]]",
-          "alwaysOn": "[variables('webAlwaysOn')[parameters('cdHostingplanSkuname')]]",
+          "use32BitWorkerProcess": "[variables('webUse32BitWorkerProcess')[variables('skuMap')[parameters('sitecoreSku')].cdHostingPlan.skuName]]",
+          "alwaysOn": "[variables('webAlwaysOn')[variables('skuMap')[parameters('sitecoreSku')].cdHostingPlan.skuName]]",
           "phpVersion": "",
           "defaultDocuments": [
             "index.html"
