@@ -29,6 +29,7 @@ Here is the list of the differences:
 * Assign `alwaysOn` and `use32BitWorkerProcess` according the `web.sku.name` value (PR #8).
 * Take into account the `linkedTemplate` pattern with these PR #9 and PR #11.
 * Integrate Azure KeyVault to store and get value of: login/passwords, Sitecore license file and Sitecore MS Deploy Package URLs (PR #10 and PR #11).
+* Integrate and adapt official `sitecoreSku` implementation, see PR #13 for more details.
 
 # ARM Templates
 
