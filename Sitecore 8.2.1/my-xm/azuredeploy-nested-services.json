@@ -397,7 +397,7 @@
     },
     "cmHostingplanSkuname": {
       "type": "string",
-      "defaultValue": "B2",
+      "defaultValue": "S1",
       "allowedValues": [
         "F1",
         "D1",
@@ -419,7 +419,7 @@
     },
     "cdHostingplanSkuname": {
       "type": "string",
-      "defaultValue": "B2",
+      "defaultValue": "S1",
       "allowedValues": [
         "F1",
         "D1",
