@@ -692,10 +692,10 @@
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
-            "edition": "[parameters('sqldatabaseEdition')]",
+            "edition": "[variables('skuMap')[parameters('sitecoreSku')].coreSqlDatabase.edition]",
             "collation": "[parameters('sqldatabaseCollation')]",
-            "maxSizeBytes": "[parameters('sqldatabaseMaxsize')]",
-            "requestedServiceObjectiveName": "[parameters('sqldatabaseServiceobjectivelevel')]"
+            "maxSizeBytes": "[variables('skuMap')[parameters('sitecoreSku')].coreSqlDatabase.maxSize]",
+            "requestedServiceObjectiveName": "[variables('skuMap')[parameters('sitecoreSku')].coreSqlDatabase.serviceObjectiveLevel]"
           },
           "name": "[variables('coreDbNameTidy')]",
           "location": "[parameters('location')]",
@@ -710,10 +710,10 @@
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
-            "edition": "[parameters('sqldatabaseEdition')]",
+            "edition": "[variables('skuMap')[parameters('sitecoreSku')].masterSqlDatabase.edition]",
             "collation": "[parameters('sqldatabaseCollation')]",
-            "maxSizeBytes": "[parameters('sqldatabaseMaxsize')]",
-            "requestedServiceObjectiveName": "[parameters('sqldatabaseServiceobjectivelevel')]"
+            "maxSizeBytes": "[variables('skuMap')[parameters('sitecoreSku')].masterSqlDatabase.maxSize]",
+            "requestedServiceObjectiveName": "[variables('skuMap')[parameters('sitecoreSku')].masterSqlDatabase.serviceObjectiveLevel]"
           },
           "name": "[variables('masterDbNameTidy')]",
           "location": "[parameters('location')]",
@@ -756,10 +756,10 @@
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
-            "edition": "[parameters('sqldatabaseEdition')]",
+            "edition": "[variables('skuMap')[parameters('sitecoreSku')].webSqlDatabase.edition]",
             "collation": "[parameters('sqldatabaseCollation')]",
-            "maxSizeBytes": "[parameters('sqldatabaseMaxsize')]",
-            "requestedServiceObjectiveName": "[parameters('sqldatabaseServiceobjectivelevel')]"
+            "maxSizeBytes": "[variables('skuMap')[parameters('sitecoreSku')].webSqlDatabase.maxSize]",
+            "requestedServiceObjectiveName": "[variables('skuMap')[parameters('sitecoreSku')].webSqlDatabase.serviceObjectiveLevel]"
           },
           "name": "[variables('webDbNameTidy')]",
           "location": "[parameters('location')]",
@@ -779,10 +779,10 @@
       "location": "[parameters('location')]",
       "properties": {
         "sku": {
-          "name": "[toLower(parameters('searchserviceSkuname'))]"
+          "name": "[toLower(variables('skuMap')[parameters('sitecoreSku')].searchService.skuName)]"
         },
-        "cdlicaCount": "[parameters('searchserviceReplicacount')]",
-        "partitionCount": "[parameters('searchservicePartitioncount')]"
+        "replicaCount": "[variables('skuMap')[parameters('sitecoreSku')].searchService.replicas]",
+        "partitionCount": "[variables('skuMap')[parameters('sitecoreSku')].searchService.partitions]"
       },
       "tags": {
         "provider": "[parameters('sitecoreTagProvider')]"
@@ -795,9 +795,9 @@
       "location": "[parameters('location')]",
       "properties": {
         "sku": {
-          "name": "[parameters('rediscacheSkuname')]",
-          "family": "[parameters('rediscacheSkufamily')]",
-          "capacity": "[parameters('rediscacheSkucapacity')]"
+          "name": "[variables('skuMap')[parameters('sitecoreSku')].redisCache.skuName]",
+          "family": "[variables('skuMap')[parameters('sitecoreSku')].redisCache.skuFamily]",
+          "capacity": "[variables('skuMap')[parameters('sitecoreSku')].redisCache.skuCapacity]"
         },
         "enableNonSslPort": false
       },
