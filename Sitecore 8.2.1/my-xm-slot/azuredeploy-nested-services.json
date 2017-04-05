@@ -417,6 +417,10 @@
         "P4"
       ]
     },
+    "cmHostingplanSkucapacity": {
+      "type": "int",
+      "defaultValue": 1
+    },
     "cdHostingplanSkuname": {
       "type": "string",
       "defaultValue": "S1",
@@ -434,6 +438,10 @@
         "P3",
         "P4"
       ]
+    },
+    "cdHostingplanSkucapacity": {
+      "type": "int",
+      "defaultValue": 1
     },
     "sqlserverVersion": {
       "type": "string",
