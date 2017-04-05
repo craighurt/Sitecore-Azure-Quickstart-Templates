@@ -531,6 +531,16 @@
       "type": "bool",
       "defaultValue": false
     },
+    "webAppRemoteDebuggingVersion": {
+      "type": "string",
+      "defaultValue": "VS2017",
+      "allowedValues": [
+        "VS2012",
+        "VS2013",
+        "VS2015",
+        "VS2017"
+      ]
+    },
     "sitecoreSku": {
       "type": "string",
       "defaultValue": "xM1",
@@ -594,7 +604,7 @@
             "index.html"
           ],
           "remoteDebuggingEnabled": "[parameters('webAppRemoteDebuggingEnabled')]",
-          "remoteDebuggingVersion": "VS2015"
+          "remoteDebuggingVersion": "[parameters('webAppRemoteDebuggingVersion')]"
         }
       },
       "location": "[parameters('location')]",
@@ -656,7 +666,7 @@
             "index.html"
           ],
           "remoteDebuggingEnabled": "[parameters('webAppRemoteDebuggingEnabled')]",
-          "remoteDebuggingVersion": "VS2015"
+          "remoteDebuggingVersion": "[parameters('webAppRemoteDebuggingVersion')]"
         }
       },
       "location": "[parameters('location')]",
