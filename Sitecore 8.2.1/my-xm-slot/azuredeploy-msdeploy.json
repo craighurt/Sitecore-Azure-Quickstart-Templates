@@ -26,7 +26,7 @@
   "resources": [
     {
       "apiVersion": "2015-01-01",
-      "name": "azuredeploy-msdeploy",
+      "name": "azuredeploy-msdeploy-slot",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "Incremental",
