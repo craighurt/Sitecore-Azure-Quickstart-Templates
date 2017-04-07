@@ -872,6 +872,23 @@
     }
   ],
   "outputs": {
+    msDeployConnectionString
+cmCoreSqldatabaseUsername
+cmCoreSqldatabasePassword
+cmCoreAdminConnectionString
+coreConnectionString
+cmMasterSqldatabaseUsername
+cmMasterSqldatabasePassword
+cmMasterAdminConnectionString
+masterConnectionString
+cmWebSqldatabaseUsername
+cmWebSqldatabasePassword
+cmWebAdminConnectionString
+webConnectionString
+searchConnectionString
+cmKeepAliveUrl
+securityClientIp
+securityClientIpMask
     "cmWebAppName": {
       "value": "[parameters('cmWebAppName')]",
       "type": "string"
