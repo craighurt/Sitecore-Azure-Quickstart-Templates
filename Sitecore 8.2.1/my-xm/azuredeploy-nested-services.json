@@ -872,6 +872,22 @@
     }
   ],
   "outputs": {
+    "cmWebAppName": {
+      "value": "[parameters('cmWebAppName')]",
+      "type": "string"
+    },
+    "cmWebAppLocation": {
+      "value": "[parameters('location')]",
+      "type": "string"
+    },
+    "cdWebAppName": {
+      "value": "[parameters('cdWebAppName')]",
+      "type": "string"
+    },
+    "cdWebAppLocation": {
+      "value": "[parameters('location')]",
+      "type": "string"
+    },
     "redisConnectionString": {
       "value": "[concat(reference(variables('redisCacheNameTidy')).hostName, ':', reference(variables('redisCacheNameTidy')).sslPort, ',password=', listKeys(resourceId('Microsoft.Cache/Redis', variables('redisCacheNameTidy')), variables('redisApiVersion')).primaryKey, ',ssl=True,abortConnect=False')]",
       "type": "string"

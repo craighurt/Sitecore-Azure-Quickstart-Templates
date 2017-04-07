@@ -26,7 +26,7 @@
   "resources": [
     {
       "apiVersion": "2015-01-01",
-      "name": "azuredeploy-services",
+      "name": "azuredeploy-services-slot",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "Incremental",
@@ -58,7 +58,7 @@
     },
     {
       "apiVersion": "2015-01-01",
-      "name": "azuredeploy-msdeploy",
+      "name": "azuredeploy-msdeploy-slot",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
         "[concat('Microsoft.Resources/deployments/', 'azuredeploy-services')]"

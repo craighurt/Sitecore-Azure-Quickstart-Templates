@@ -16,9 +16,8 @@
     "keyVaultId": "[resourceId(parameters('keyVaultResourceGroupName'), 'Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
     "cmMsdeployPackageurlSecretName": "SitecoreXmCmMsDeployPackageUrl",
     "cdMsdeployPackageurlSecretName": "SitecoreXmCdMsDeployPackageUrl",
-    "sqlserverLoginSecretName": "SqlServerLogin",
-    "sqlserverPasswordSecretName": "SqlServerPassword",
-    "sitecoreAdminPasswordSecretName": "SitecoreAdminPassword"
+    "sitecoreAdminPasswordSecretName": "SitecoreAdminPassword",
+    "servicesDeploymentName": "azuredeploy-services"
   },
   "resources": [
     {
@@ -31,6 +30,9 @@
           "uri": "https://raw.githubusercontent.com/mathieu-benoit/Sitecore-Azure-Quickstart-Templates/master/Sitecore%208.2.1/my-xm/azuredeploy-nested-msdeploy.json"
         },
         "parameters": {
+          "servicesDeploymentName": {
+            "value": "[variables('servicesDeploymentName')]"
+          },
           "cmMsdeployPackageurl": {
             "reference": {
               "keyVault": {
@@ -45,22 +47,6 @@
                 "id": "[variables('keyVaultId')]"
               },
               "secretName": "[variables('cdMsdeployPackageurlSecretName')]"
-            }
-          },
-          "sqlserverLogin": {
-            "reference": {
-              "keyVault": {
-                "id": "[variables('keyVaultId')]"
-              },
-              "secretName": "[variables('sqlserverLoginSecretName')]"
-            }
-          },
-          "sqlserverPassword": {
-            "reference": {
-              "keyVault": {
-                "id": "[variables('keyVaultId')]"
-              },
-              "secretName": "[variables('sqlserverPasswordSecretName')]"
             }
           },
           "licenseXml": {
