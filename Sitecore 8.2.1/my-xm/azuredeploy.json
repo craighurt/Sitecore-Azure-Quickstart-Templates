@@ -8,6 +8,21 @@
     "keyVaultResourceGroupName": {
       "type": "string"
     },
+    "sitecoreSku": {
+      "type": "string",
+      "defaultValue": "xM1",
+      "allowedValues": [
+        "custom",
+        "xM1",
+        "xM2",
+        "xM3",
+        "xM4",
+        "xM5"
+      ],
+      "metadata": {
+        "description": "Sitecore SKU controls the sizes and service levels of the provisioned resources"
+      }
+    },
     "licenseXml": {
       "type": "securestring"
     }
@@ -33,21 +48,14 @@
           "uri": "https://raw.githubusercontent.com/mathieu-benoit/Sitecore-Azure-Quickstart-Templates/master/Sitecore%208.2.1/my-xm/azuredeploy-services.json"
         },
         "parameters": {
-          "sqlserverLogin": {
-            "reference": {
-              "keyVault": {
-                "id": "[variables('keyVaultId')]"
-              },
-              "secretName": "[variables('sqlserverLoginSecretName')]"
-            }
+          "keyVaultName": {
+            "value": "[parameters('keyVaultName')]"
           },
-          "sqlserverPassword": {
-            "reference": {
-              "keyVault": {
-                "id": "[variables('keyVaultId')]"
-              },
-              "secretName": "[variables('sqlserverPasswordSecretName')]"
-            }
+          "keyVaultResourceGroupName": {
+            "value": "[parameters('keyVaultResourceGroupName')]"
+          },
+          "sitecoreSku": {
+            "value": "[parameters('sitecoreSku')]"
           }
         }
       }
@@ -83,14 +91,6 @@
           },
           "licenseXml": {
             "value": "[parameters('licenseXml')]"
-          },
-          "sitecoreAdminPassword": {
-            "reference": {
-              "keyVault": {
-                "id": "[variables('keyVaultId')]"
-              },
-              "secretName": "[variables('sitecoreAdminPasswordSecretName')]"
-            }
           }
         }
       }

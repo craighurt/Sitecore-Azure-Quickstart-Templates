@@ -16,6 +16,8 @@ Function Unzip
     return $output.ToArray();
 }
 
+#Login-AzureRmAccount;
+
 $secretLicense = Get-AzureKeyVaultSecret -VaultName $KeyVaultName -Name "SitecoreLicense";
 $zipContent = [System.Convert]::FromBase64String($secretLicense.SecretValueText);
 $licenseFile = Unzip($zipContent);
@@ -26,8 +28,7 @@ $parameters.Add("licenseXml", $licenseFileContent);
 $parameters.Add("keyVaultName", $KeyVaultName);
 $parameters.Add("keyVaultResourceGroupName", $KeyVaultResourceGroupName);
 
-#Login-AzureRmAccount
-#Select-AzureRmSubscription -SubscriptionName "TODO"
+#Select-AzureRmSubscription -SubscriptionName "TODO";
 #New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation;
 
 New-AzureRmResourceGroupDeployment -Name $ResourceGroupName -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -TemplateParameterObject $parameters;

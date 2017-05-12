@@ -17,7 +17,8 @@ Choose the compatible templates for your Sitecore version:
 
 | Templates Folder | Compatible Sitecore versions                       |
 |------------------|----------------------------------------------------|
-| Sitecore 8.2.1   | Sitecore 8.2 Update-1 and Sitecore 8.2 Update-2    |
+| Sitecore 8.2.1   | Sitecore 8.2 Update-1 and Update-2                 |
+| Sitecore 8.2.3   | Sitecore 8.2 Update-3                              |
 
 # Pre-deployment Checklist
 1. Ensure you have the latest Azure PowerShell SDK installed
@@ -45,5 +46,3 @@ My playground with custom changes. Use them, share them, adapt them and let's be
 ## Visual Studio Team Service (VSTS) deployment
 
 Furthermore, you could find my entire documentation to setup the associated Visual Studio Team Service (VSTS) deployment with this [blog article](https://alwaysupalwayson.blogspot.com/2017/03/advanced-sitecore-arm-templates.html).
-
-
